@@ -46,6 +46,9 @@ Primary directives and project philosophy
 ### `11_markdown-standards.mdc`
 Markdown and documentation standards
 
+### `12_copilot-instructions-extract.mdc`
+Key guidelines extracted from copilot-instructions.md for AI assistants
+
 ---
 
 **Note**: Cursor automatically loads all `.mdc` files in `.cursor/rules/`.
