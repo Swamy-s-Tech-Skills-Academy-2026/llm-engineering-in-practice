@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Discussions
+    url: https://github.com/YOUR_USERNAME/llm-engineering-in-practice/discussions
+    about: Ask questions, share ideas, or discuss LLM engineering learning content
+  - name: 📚 Documentation
+    url: https://github.com/YOUR_USERNAME/llm-engineering-in-practice#readme
+    about: Check the README and repository documentation for more information
