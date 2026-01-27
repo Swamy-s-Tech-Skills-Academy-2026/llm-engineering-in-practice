@@ -196,6 +196,67 @@ Avoid generic messages like "update file".
 
 ---
 
+## 📚 Source Material Rules
+
+The `source-material/` directory contains **read-only reference materials** that must never be modified or deleted.
+
+### 🚫 Critical Restrictions
+
+**Read-Only Policy**:
+- **DO NOT** modify any file in `source-material/`
+- **DO NOT** overwrite any file in `source-material/`
+- **DO NOT** edit content, even if it contains errors
+- Files are permanent reference materials
+
+**No Deletion Policy**:
+- **DO NOT** delete anything from `source-material/`
+- Content remains even after migration
+- Serves as a permanent historical reference
+
+### 🔄 Migration Workflow
+
+When migrating content from `source-material/`:
+
+1. **Read** from `source-material/` to understand concepts
+2. **Synthesize** — rewrite in your own words (no copy-paste)
+3. **Publish** to educational folders: `reading-notes/`, `notebooks/`, `examples/`, `docs/`, `src/`
+4. **Cite** when using specific definitions/theorems
+
+### ✍️ Zero-Copy Policy
+
+**Good Synthesis** (accepted):
+- Demonstrates understanding
+- Uses different vocabulary
+- Explains concepts, not restates them
+- Shows original thinking and interpretation
+
+**Bad Synthesis** (rejected):
+- Word-for-word copying
+- Minor rephrasing
+- Close paraphrasing without understanding
+- Direct copy-paste with minimal changes
+
+### 🎯 Purpose
+
+The `source-material/` folder is a staging area for:
+- Raw author content
+- Book transcripts/excerpts
+- PDF extracts
+- Reference materials
+- Original code examples
+
+These materials remain untouched and serve as permanent references while you create original, synthesized educational content in the proper folders.
+
+### ⚖️ Enforcement
+
+- Reviewers must reject any PRs that modify or delete files in `source-material/`
+- AI assistants must refuse requests to edit, overwrite, or delete content in `source-material/`
+- Any migration must result in original synthesis, not copied content
+
+**Summary**: `source-material/` is read-only and permanent. Read it to understand concepts, then create original, synthesized content in the educational folders following the zero-copy policy.
+
+---
+
 ## ✅ When Unsure
 
 Prefer to ask (in comments / docs) or create a small, clearly named experimental script instead of over-engineering a general solution.
