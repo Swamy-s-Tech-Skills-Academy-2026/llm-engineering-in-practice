@@ -1,0 +1,45 @@
+---
+description: Naming conventions for files and directories
+globs: *
+---
+# File Naming Conventions
+
+## Prompt Templates
+
+- Format: `name.prompt.txt` (e.g., `qa-baseline.prompt.txt`)
+- Metadata: `name.meta.json` (e.g., `qa-baseline.meta.json`)
+- Use kebab-case for names
+
+## Python Scripts
+
+- Use snake_case (standard Python convention)
+- Examples: `log_utils.py`, `metrics.py`, `build_index.py`
+
+## Notebooks
+
+- Use descriptive kebab-case names
+- Examples: `01-setup-diagnostics.ipynb`, `rag-experiment.ipynb`
+
+## Directories
+
+- Use kebab-case for directory names
+- Examples: `prompts/`, `rag/`, `agents/`, `tools/`, `eval/`
+
+## Data Files
+
+- Use descriptive names with extensions
+- Examples: `qa_small.json`, `experiment_log.csv`
+
+---
+
+## Commit Message Pattern
+
+Use conventional-ish style with context tag + concise action:
+
+```text
+rag: add hybrid retriever baseline
+prompts: revise qa prompt for factuality emphasis
+agents: log tool reasoning trace
+```
+
+Avoid generic messages like "update file".

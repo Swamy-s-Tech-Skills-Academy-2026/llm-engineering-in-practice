@@ -1,0 +1,48 @@
+---
+description: Quality assurance standards for code and experiments
+globs: *.py, *.go, *.js, *.ts, *.cs, *.ipynb
+---
+# Quality Assurance
+
+## Code Quality Checklist
+
+### Python Scripts
+
+- [ ] Follows PEP 8 style guide
+- [ ] Type hints used for function arguments and return types
+- [ ] Docstrings included for all functions and classes
+- [ ] No hardcoded paths (use `pathlib` or relative paths)
+- [ ] Functions < ~60 lines; refactor if growing
+
+### Jupyter Notebooks
+
+- [ ] **Kernel Restart & Run All** passes without errors
+- [ ] Logical flow: Import -> Load Data -> Analysis -> Plot -> Conclusion
+- [ ] No hidden state (variables defined in deleted cells)
+- [ ] Markdown cells clearly explain the steps
+- [ ] Visualizations have titles, labels, and legends
+
+---
+
+## Experiment Quality
+
+- [ ] Experiments are reproducible (seeds set, versions logged)
+- [ ] Experiment metadata logged (model, prompt hash, temperature, dataset)
+- [ ] Structured logging format followed
+- [ ] No secrets committed; use `.env` for API keys
+
+---
+
+## Testing Minimalism
+
+- For utility modules, add a lightweight smoke test (even if not full pytest suite yet)
+- When generating parsers / validators, include an inline `if __name__ == "__main__":` block that demo-runs with sample input
+
+---
+
+## Documentation Quality
+
+- README.md must match actual implementation
+- Usage guides must be accurate
+- Code comments explain complex logic and concepts
+- Prompt templates have metadata sidecars

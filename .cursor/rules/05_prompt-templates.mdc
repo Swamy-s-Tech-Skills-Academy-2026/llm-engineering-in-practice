@@ -1,0 +1,34 @@
+---
+description: Prompt template conventions
+globs: prompts/**/*
+---
+# Prompt Template Convention
+
+## Storage Format
+
+Store prompt templates as plain `.txt` or `.jinja` in `prompts/` plus sidecar metadata: `name.prompt.txt` and `name.meta.json`:
+
+**Example `name.meta.json`**:
+```json
+{
+  "version": 1,
+  "description": "Baseline QA context injection",
+  "variables": ["question", "context"],
+  "intended_model": "gpt-4o-mini",
+  "notes": "Keep temperature <=0.2 for deterministic eval."
+}
+```
+
+## Structured Output
+
+When requesting structured output:
+- Show an explicit JSON schema in the prompt
+- Add validation code
+
+---
+
+## Template Management
+
+- Centralize prompt templates in `prompts/` folder
+- Use metadata sidecars for versioning and documentation
+- Track prompt versions for reproducibility

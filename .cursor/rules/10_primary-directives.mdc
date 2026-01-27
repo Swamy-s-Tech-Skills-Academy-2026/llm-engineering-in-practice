@@ -1,0 +1,53 @@
+---
+description: Primary directives for LLM Engineering
+globs: *
+---
+# Primary Directives
+
+## Project Focus
+
+This is an **LLM Engineering Learning Workspace** that:
+- Implements LLM applications across multiple platforms (OpenAI, Azure OpenAI)
+- Supports multiple languages (Python, Go, Node.js, Angular, React, Next.js, .NET)
+- Focuses on practical experimentation: prompt design, RAG, agents, tool/function calling, evaluation
+- Follows a structured 25-week learning plan
+
+### Educational Philosophy
+
+- **Experimental first**: Prioritize small, fast feedback loops
+- **Reproducible**: Log model + prompt versions, use seeds where supported
+- **Evaluation-ready**: Keep output structures stable for future evaluation
+- **Multi-platform**: Support both OpenAI and Azure OpenAI from Week 1
+
+---
+
+## Current State
+
+- ✅ Active Learning: 25-week structured learning plan
+- ✅ Tech Stack: Python, Go, Node.js, Angular, React, Next.js, .NET (Aspire, Web API, Blazor)
+- ✅ Multi-Provider: OpenAI + Azure OpenAI support
+- ✅ Frameworks: LangChain, LangGraph, OpenAI Agent SDK, Azure Agent SDK
+
+---
+
+## Documentation Accuracy
+
+- Code must accurately implement LLM engineering patterns
+- Prompt templates must be properly formatted with metadata
+- Experiment logs must include all required fields
+- Weekly guides must match the learning plan structure
+
+---
+
+## Code Maintenance
+
+- Keep functions small and composable (< ~60 lines)
+- Separate concerns: data ingestion, retrieval logic, prompting, evaluation
+- Use explicit configuration (YAML / .env) over hidden constants
+- Make experiments reproducible (seed where supported, log versions)
+
+---
+
+## When Unsure
+
+Prefer to ask (in comments / docs) or create a small, clearly named experimental script instead of over-engineering a general solution.
