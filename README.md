@@ -2,7 +2,43 @@
 
 **Complete 25-week structured learning path for mastering LLM Engineering from basics to multi-platform mastery**
 
+![Status](https://img.shields.io/badge/Status-Active-brightgreen)
+![Python](https://img.shields.io/badge/Python-3.11%2B-blue)
+![Jupyter](https://img.shields.io/badge/Jupyter-Notebooks-orange)
+![Multi-Provider](https://img.shields.io/badge/Providers-OpenAI%20%7C%20Azure%20OpenAI-green)
+![Multi-Language](https://img.shields.io/badge/Languages-Python%20%7C%20Go%20%7C%20Node.js%20%7C%20.NET-purple)
+
 This repository is a comprehensive, hands-on exploration of modern Large Language Model (LLM) engineering, tooling, and real-world application patterns. It accompanies **Ed Donner's "LLM Engineering: Master AI, Large Language Models & Agents"** Udemy course and provides a structured roadmap to build practical skills across multiple platforms and languages.
+
+---
+
+## 📌 Disclaimer (Important)
+
+This repository is a **personal learning workspace** maintained by **Viswanatha Swamy (Swamy PKV)** as part of his learning journey in LLM Engineering.
+
+* This is **not an official course repository**
+* It does **not represent institutional teaching material**
+* It is **not endorsed, published, or maintained** by any educational institution
+* The contents are intended **solely for academic learning and self-practice**
+
+---
+
+## 📑 Table of Contents
+
+- [Objectives](#-objectives)
+- [Learning Path Overview](#-learning-path-overview)
+- [Current Status](#-current-status)
+- [Quick Start](#-quick-start-local)
+- [Primary Course Reference](#-primary-course-reference)
+- [25-Week Learning Roadmap](#-25-week-learning-roadmap)
+- [Repository Structure](#-repository-structure)
+- [Environment Setup](#-environment-setup)
+- [Evaluation Philosophy](#-evaluation-philosophy)
+- [Comprehensive Learning Plan](#-comprehensive-learning-plan)
+- [Tools & Technologies](#-tools--technologies)
+- [Author](#-author)
+- [Academic Usage Note](#-academic-usage-note)
+- [Development](#-development)
 
 ---
 
@@ -57,34 +93,56 @@ This repository is a comprehensive, hands-on exploration of modern Large Languag
 
 > 1. <https://docs.astral.sh/uv/getting-started/installation/#standalone-installer>
 
-## ⚡ Quick Start (Local)
+## 🚀 Getting Started
 
-```powershell
-# Clone (adjust URL if you forked)
-git clone <YOUR_FORK_URL> llm-engineering-learning
-cd llm-engineering-learning
+This project uses **uv** for fast Python package management.
 
-# Install uv (if not already installed)
-# Using standalone installer (recommended):
-#   powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-# Or via pip:
-#   pip install uv
+### Prerequisites
 
-# Sync environment and install dependencies
-uv sync
+- Python 3.11+
+- [uv](https://github.com/astral-sh/uv) (Package Manager)
+- API Keys:
+  - OpenAI: [https://platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+  - Azure OpenAI: [Azure Portal](https://portal.azure.com) → Create Azure OpenAI resource
 
-# Set up API keys (create .env file)
-# OpenAI: https://platform.openai.com/api-keys
-# Azure OpenAI: https://portal.azure.com → Create Azure OpenAI resource
-# Copy .env.example to .env and fill in your keys
+### Installation
 
-# (Optional) Run diagnostics to verify setup
-cd notebooks/01-setup && uv run python diagnostics.py
+1. **Clone the repository**
 
-# (Optional) Smoke test logging + metrics modules
-uv run python -m eval.log_utils
-uv run python -m eval.metrics
-```
+   ```powershell
+   git clone <YOUR_FORK_URL> llm-engineering-learning
+   cd llm-engineering-learning
+   ```
+
+2. **Sync dependencies**:
+
+   ```powershell
+   # Windows (PowerShell)
+   $Env:UV_LINK_MODE = "copy"  # Optional: Fix for cross-drive hardlink warnings
+   uv sync
+   ```
+
+3. **Set up API keys** (create `.env` file):
+
+   ```powershell
+   # Copy .env.example to .env and fill in your keys
+   # Or set environment variables:
+   setx OPENAI_API_KEY "sk-..."
+   setx AZURE_OPENAI_API_KEY "your-key"
+   setx AZURE_OPENAI_ENDPOINT "https://your-resource.openai.azure.com"
+   ```
+
+4. **Verify setup** (optional):
+
+   ```powershell
+   cd notebooks/01-setup && uv run python diagnostics.py
+   ```
+
+5. **Run Jupyter** (optional):
+
+   ```powershell
+   uv run jupyter lab
+   ```
 
 **Start Learning**: Open [`docs/learning-plan.md`](docs/learning-plan.md) for the master guide, then begin with [`docs/weeks/Week1.md`](docs/weeks/Week1.md)
 
@@ -136,6 +194,8 @@ Supplemented with official docs, open papers, and community benchmarks.
 
 ## 🧱 Repository Structure
 
+> **📖 Full Documentation**: See [docs/01_repository-structure.md](docs/01_repository-structure.md) for detailed organization rules.
+
 ```text
 ├─ .backup/            # Archived legacy files (environment.yml, requirements.txt)
 ├─ agents/             # Agent & tool orchestration experiments
@@ -163,6 +223,18 @@ Supplemented with official docs, open papers, and community benchmarks.
 ├─ uv.lock             # Locked dependency versions (uv)
 └─ README.md            # This file
 ```
+
+## 🛠 Tools & Technologies
+
+- **Python 3.11+** for LLM engineering implementations
+- **Jupyter Notebooks** for experimentation and visualization
+- **Markdown** for structured documentation and learning guides
+- **Multi-Provider**: OpenAI & Azure OpenAI SDKs
+- **Multi-Language**: Python, Go, Node.js, Angular, React, Next.js, .NET
+- **Frameworks**: LangChain, LangGraph, OpenAI Agent SDK, Azure Agent SDK
+- **[uv](https://github.com/astral-sh/uv)** for fast Python package management
+
+---
 
 ## 🛠 Environment Setup
 
@@ -288,9 +360,38 @@ For the complete **25-week structured learning path**, daily workflow patterns, 
 * Log only minimal necessary interaction metadata
 * Track model + prompt versions for reproducibility
 
+## 👤 Author
+
+**Viswanatha Swamy (Swamy PKV)**  
+Software Architect | Data Science & AI Practitioner  
+LLM Engineering & AI Systems Enthusiast
+
+GitHub: [https://github.com/bits-dsai-swamypkv-practice](https://github.com/bits-dsai-swamypkv-practice)
+
+---
+
+## 📖 Academic Usage Note
+
+The contents of this repository are intended for:
+
+- Conceptual understanding of LLM engineering patterns
+- Personal learning and practice
+- Supplementary reference alongside official course materials
+- Hands-on experimentation with multi-provider and multi-language implementations
+
+They should **not** be used as a substitute for:
+
+- Prescribed course materials
+- Official documentation
+- Production deployment without proper testing and validation
+
+---
+
 ## 🤝 Contributions
 
 Currently a personal learning space—external PRs likely paused until a baseline structure exists.
+
+---
 
 ## 📝 License
 
