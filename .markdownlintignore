@@ -1,5 +1,30 @@
+# Ignore generated or temp files
+
+**/node_modules/**
 **/.venv/**
 **/.vscode/**
 **/dist/**
 **/build/**
-**/node_modules/**
+source-material/**
+
+# Ignore Git directory and all subdirectories
+
+.git/**
+
+# Ignore image files (not markdown)
+
+**/*.png
+**/*.PNG
+**/*.jpg
+**/*.jpeg
+**/*.gif
+**/*.svg
+
+# Ignore non-markdown source files
+
+**/*.py
+**/*.ps1
+**/*.yml
+**/*.yaml
+**/*.toml
+**/*.json

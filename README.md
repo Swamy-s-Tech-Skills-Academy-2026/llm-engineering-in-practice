@@ -188,6 +188,9 @@ pip install uv
 ### Setup Steps
 
 ```powershell
+# Optional: Suppress cross-drive hardlink warnings (if expected)
+$Env:UV_LINK_MODE = "copy"
+
 # 1. Sync environment (creates .venv and installs all dependencies from pyproject.toml)
 uv sync
 

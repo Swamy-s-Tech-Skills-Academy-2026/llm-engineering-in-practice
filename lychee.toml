@@ -35,8 +35,13 @@ exclude = [
 
 # Skip link checking inside these filesystem paths (globs)
 exclude_path = [
-  "data/**",            # raw/processed data may contain transient links
-  "docs/retros/**"      # retrospective notes (low value link checking)
+  "source-material/**",  # Staging area for raw content (read-only)
+  "data/**",             # raw/processed data may contain transient links
+  "docs/reports/**",      # Generated reports (may contain transient links)
+  "docs/retros/**",      # Retrospective notes (low value link checking)
+  ".venv/**",            # Virtual environment
+  ".cursor/**",          # Cursor IDE configuration
+  ".github/**"           # GitHub workflows and templates
 ]
 
 # (Optional) Provide GitHub token via env for higher rate limits
