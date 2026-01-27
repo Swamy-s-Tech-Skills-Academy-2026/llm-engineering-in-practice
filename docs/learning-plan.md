@@ -1,6 +1,6 @@
 # LLM Engineering Learning Plan
 
-**Complete 25-week guide for mastering LLM Engineering from basics to multi-platform mastery**
+## Complete 25-week guide for mastering LLM Engineering from basics to multi-platform mastery
 
 This learning plan is designed to accompany **Ed Donner's "LLM Engineering: Master AI, Large Language Models & Agents"** Udemy course. Use this as your structured roadmap to build practical skills alongside the course content.
 
@@ -24,6 +24,7 @@ This learning plan is designed to accompany **Ed Donner's "LLM Engineering: Mast
 ### Your First 5 Minutes
 
 1. **Install uv (if not already installed):**
+
    ```powershell
    # Windows (PowerShell)
    powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
@@ -36,6 +37,7 @@ This learning plan is designed to accompany **Ed Donner's "LLM Engineering: Mast
    ```
 
 2. **Set up environment:**
+
    ```powershell
    # Sync environment (creates .venv and installs all dependencies from pyproject.toml)
    uv sync
@@ -45,10 +47,12 @@ This learning plan is designed to accompany **Ed Donner's "LLM Engineering: Mast
    ```
 
 3. **Get API keys:**
+
    - OpenAI: [platform.openai.com/api-keys](https://platform.openai.com/api-keys)
    - Azure OpenAI: [portal.azure.com](https://portal.azure.com) → Create Azure OpenAI resource
 
 4. **Create `.env` file:**
+
    ```env
    OPENAI_API_KEY=sk-your-key-here
    AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com
@@ -56,7 +60,9 @@ This learning plan is designed to accompany **Ed Donner's "LLM Engineering: Mast
    AZURE_OPENAI_API_VERSION=2024-02-15-preview
    ```
 
-5. **Start Week 1:** Open [`docs/weeks/Week1.md`](weeks/Week1.md) and follow day-by-day
+5. **Start Week 1:**
+
+   Open [`docs/weeks/Week1.md`](weeks/Week1.md) and follow day-by-day
 
 > **Note**: This project uses [`uv`](https://github.com/astral-sh/uv) for fast dependency management. See [`README.md`](../README.md) for detailed setup instructions.
 
@@ -67,18 +73,21 @@ This learning plan is designed to accompany **Ed Donner's "LLM Engineering: Mast
 ### Essential Skills
 
 **Python Basics** (Required for Weeks 1-21)
+
 - Variables, data types, functions
 - Working with JSON, file I/O
 - Error handling (try/except)
 - List comprehensions
 
 **Other Languages** (Weeks 22-24)
+
 - **Go**: Basic syntax, interfaces, error handling
 - **Node.js**: JavaScript/TypeScript, async/await
 - **Frontend**: React, Angular, or Next.js basics
 - **.NET**: C# basics, ASP.NET Core
 
 **API Concepts** (Helpful)
+
 - REST API basics
 - API keys and authentication
 - JSON response format
@@ -86,6 +95,7 @@ This learning plan is designed to accompany **Ed Donner's "LLM Engineering: Mast
 ### Self-Assessment
 
 Before starting, can you:
+
 - [ ] Write a Python function that processes a list?
 - [ ] Make an HTTP request and parse JSON response?
 - [ ] Create and activate a virtual environment?
@@ -101,6 +111,7 @@ Before starting, can you:
 **Total Time:** ~62.5 hours  
 **Multi-Platform from Week 1:** OpenAI + Azure OpenAI + Python + Go + Node.js + Frontend + .NET  
 **Progressive Multi-Platform Introduction:**
+
 - **Weeks 1-5**: Python with OpenAI + Azure OpenAI (dual provider from start)
 - **Weeks 6-10**: Add Go and Node.js (backend languages)
 - **Weeks 11-15**: Add React, Angular, Next.js (frontend frameworks)
@@ -109,31 +120,31 @@ Before starting, can you:
 
 | Week | Theme | Primary Outcomes | Platforms | Deep Dives | Guide |
 |------|-------|------------------|-----------|------------|-------|
-| **Foundation Phase - Multi-Platform from Start** |
+| **1-5** | **Foundation Phase - Multi-Platform from Start** | | | | |
 | 1 | Foundations & Environment | Reproducible env, API key management | **OpenAI + Azure OpenAI** (Python) | Dual provider setup | [`Week1.md`](weeks/Week1.md) |
 | 2 | Python & Data Handling | Clean data ingestion + utilities | **OpenAI + Azure OpenAI** (Python) | Text chunking strategies | [`Week2.md`](weeks/Week2.md) |
 | 3 | LLM & Prompt Engineering | Prompt patterns + evaluation | **OpenAI + Azure OpenAI** (Python) | **Chain-of-Thought (CoT)** | [`Week3.md`](weeks/Week3.md) |
 | 4 | Bots & Scraping | Basic scraper + LLM summarizer | **OpenAI + Azure OpenAI** (Python) | Web scraping + integration | [`Week4.md`](weeks/Week4.md) |
 | 5 | Multi-Agent Intro + ReAct | Agent reasoning log | **OpenAI + Azure OpenAI** (Python) | **ReAct (Reasoning + Acting)** | [`Week5.md`](weeks/Week5.md) |
-| **Intermediate Phase - Add Backend Languages** |
+| **6-10** | **Intermediate Phase - Add Backend Languages** | | | | |
 | 6 | Structured Outputs & Orchestration | Reliable JSON / tool calling | **OpenAI + Azure OpenAI** (Python, **Go intro**) | Function calling APIs | [`Week6.md`](weeks/Week6.md) |
 | 7 | Optimization & Performance | Latency + cost reductions | **OpenAI + Azure OpenAI** (Python, **Node.js intro**) | Caching, batching, model selection | [`Week7.md`](weeks/Week7.md) |
 | 8 | Applied Mini Projects | Polished micro-app | **OpenAI + Azure OpenAI** (Python, Go, Node.js) | Multi-language apps | [`Week8.md`](weeks/Week8.md) |
 | 9 | Autonomous / Planning Agents | Planner vs reactive comparison | **OpenAI + Azure OpenAI** (Python, Go, Node.js) | Planning algorithms | [`Week9.md`](weeks/Week9.md) |
 | 10 | Deployment & Scaling | Local + cloud deployment | **OpenAI + Azure OpenAI** (Python, Go, Node.js) | Scaling strategies | [`Week10.md`](weeks/Week10.md) |
-| **Advanced Phase - Add Frontend** |
+| **11-15** | **Advanced Phase - Add Frontend** | | | | |
 | 11 | Capstone Build | Integrated RAG + tools + eval | **OpenAI + Azure OpenAI** (Python, Go, Node.js, **React intro**) | Full-stack application | [`Week11.md`](weeks/Week11.md) |
 | 12 | Review & Deep Dives | Retrospective + experiments | **OpenAI + Azure OpenAI** (All backends + React) | Lessons learned | [`Week12.md`](weeks/Week12.md) |
 | 13 | Advanced RAG | Hybrid search + reranking | **OpenAI + Azure OpenAI** (Python, Go, Node.js, **Angular intro**) | Semantic chunking | [`Week13.md`](weeks/Week13.md) |
 | 14 | Reasoning Patterns Deep Dive | Pattern mastery | **OpenAI + Azure OpenAI** (All backends + React, Angular) | **All patterns (CoT, ReAct, ToT, PoT)** | [`Week14.md`](weeks/Week14.md) |
 | 15 | Multi-Agent Systems | Agent coordination + communication | **OpenAI + Azure OpenAI** (All backends + React, Angular, **Next.js intro**) | Multi-agent architectures | [`Week15.md`](weeks/Week15.md) |
-| **Production Phase - Add .NET** |
+| **16-20** | **Production Phase - Add .NET** | | | | |
 | 16 | Production Optimization | Cost + performance optimization | **OpenAI + Azure OpenAI** (All languages + **.NET Web API intro**) | Production best practices | [`Week16.md`](weeks/Week16.md) |
 | 17 | Advanced Evaluation | Comprehensive evaluation framework | **OpenAI + Azure OpenAI** (All languages + .NET Web API) | Custom metrics | [`Week17.md`](weeks/Week17.md) |
 | 18 | Specialized Applications | Domain-specific applications | **OpenAI + Azure OpenAI** (All languages + **Blazor intro**) | Industry use cases | [`Week18.md`](weeks/Week18.md) |
 | 19 | Research & Experimentation | Research framework | **OpenAI + Azure OpenAI** (All languages + **.NET Aspire intro**) | Experimental design | [`Week19.md`](weeks/Week19.md) |
 | 20 | Mastery & Beyond | Complete mastery + portfolio | **OpenAI + Azure OpenAI** (All platforms) | Advanced portfolio | [`Week20.md`](weeks/Week20.md) |
-| **Mastery Phase - Framework Integration** |
+| **21-25** | **Mastery Phase - Framework Integration** | | | | |
 | 21 | Azure OpenAI Deep Dive | Multi-provider patterns | **OpenAI + Azure OpenAI** (All platforms) | **Azure OpenAI + abstraction** | [`Week21.md`](weeks/Week21.md) |
 | 22 | Multi-Language Mastery | Cross-language patterns | **OpenAI + Azure OpenAI** (Python, Go, Node.js mastery) | **Cross-language patterns** | [`Week22.md`](weeks/Week22.md) |
 | 23 | Frontend Mastery | Frontend LLM integration | **OpenAI + Azure OpenAI** (React, Angular, Next.js mastery) | **Frontend LLM integration** | [`Week23.md`](weeks/Week23.md) |
@@ -147,6 +158,7 @@ Before starting, can you:
 ### Weekly Structure
 
 Each week follows this pattern:
+
 - **5 days** × **30 minutes** = **2.5 hours total**
 - **Day-by-day breakdown** with specific tasks
 - **Exercises** with success criteria
@@ -167,6 +179,7 @@ Each week follows this pattern:
 ### Multi-Platform Support (From Week 1)
 
 **Progressive Language Introduction:**
+
 - **Weeks 1-5**: Python with OpenAI + Azure OpenAI
 - **Weeks 6-10**: Add Go and Node.js (backend languages)
 - **Weeks 11-15**: Add React, Angular, Next.js (frontend frameworks)
@@ -174,6 +187,7 @@ Each week follows this pattern:
 - **Weeks 21-25**: Master all platforms + frameworks (LangChain, LangGraph, SDKs)
 
 **Dual Provider Support:**
+
 - **Every week**: All implementations support both OpenAI and Azure OpenAI
 - **Week 1**: Start with both providers from day one
 - **Throughout**: Compare and contrast both providers
@@ -194,7 +208,7 @@ Each week follows this pattern:
 
 ### Project Structure
 
-```
+```text
 notebooks/          # Explorations (00_, 01_, ...)
 prompts/            # Reusable prompt templates (+ metadata JSON)
 rag/                # Index builders, retrievers, query pipelines
@@ -245,6 +259,7 @@ Track minimal but useful fields (CSV):
 ### Weekly Checklist Template
 
 Use this for each week:
+
 - [ ] Week objectives completed
 - [ ] All exercises finished
 - [ ] Deliverables created
@@ -290,19 +305,24 @@ Use this for each week:
 
 ### Common Issues
 
-**"ModuleNotFoundError: No module named 'openai'"**
+#### "ModuleNotFoundError: No module named 'openai'"
+
 - Solution: Run `uv sync` to install all dependencies from `pyproject.toml`, or use `uv run python your_script.py` to run with the correct environment
 
-**"API key not found"**
+#### "API key not found"
+
 - Solution: Check `.env` file exists, contains `OPENAI_API_KEY=...` (no spaces), and use `load_dotenv()`
 
-**"Rate limit exceeded"**
+#### "Rate limit exceeded"
+
 - Solution: Add delays between calls: `time.sleep(1)`, or use different tier
 
-**"Context length exceeded"**
+#### "Context length exceeded"
+
 - Solution: Split text into smaller chunks, or use model with larger context window
 
-**"Invalid API key"**
+#### "Invalid API key"
+
 - Solution: Verify key is correct, no extra spaces in `.env`, key is active
 
 ---
@@ -310,21 +330,25 @@ Use this for each week:
 ## 📚 Resources
 
 ### Essential Reading
+
 - [OpenAI API Documentation](https://platform.openai.com/docs)
 - [Azure OpenAI Documentation](https://learn.microsoft.com/azure/ai-services/openai/)
 - [LangChain Documentation](https://python.langchain.com/)
 - [Prompt Engineering Guide](https://www.promptingguide.ai/)
 
 ### Video Resources
+
 - **Ed Donner's Udemy Course** (your primary resource)
 - [Andrej Karpathy's LLM Course](https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ) - Deep dive
 
 ### Communities
+
 - [r/LocalLLaMA](https://www.reddit.com/r/LocalLLaMA/) - Reddit community
 - [LangChain Discord](https://discord.gg/langchain) - Active community
 - [Hugging Face Forums](https://discuss.huggingface.co/) - Model discussions
 
 ### Tools & Libraries
+
 - **LangChain** - Framework for LLM applications
 - **LangGraph** - Stateful agent workflows
 - **LlamaIndex** - RAG framework
@@ -358,6 +382,7 @@ Use this for each week:
 ## 📖 Detailed Weekly Guides
 
 All 25 weeks have comprehensive day-by-day guides with:
+
 - Learning objectives
 - Daily task breakdowns
 - Practical exercises

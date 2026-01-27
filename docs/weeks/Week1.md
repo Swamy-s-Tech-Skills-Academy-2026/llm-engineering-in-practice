@@ -10,6 +10,7 @@
 ## 🎯 Week 1 Learning Objectives
 
 By the end of this week, you will:
+
 - [ ] Set up a complete development environment for LLM Engineering
 - [ ] Successfully make API calls to LLM providers (OpenAI, Anthropic, etc.)
 - [ ] Understand API authentication and key management
@@ -26,11 +27,14 @@ By the end of this week, you will:
 **Learning Goal:** Set up Python environment and understand project structure
 
 **Tasks (30 min):**
+
 1. **Install Python** (5 min)
+
    - Verify Python 3.8+ is installed: `python --version`
    - If needed, install from [python.org](https://www.python.org/downloads/)
 
 2. **Install uv (if not already installed)** (5 min)
+
    ```powershell
    # Windows (PowerShell)
    powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
@@ -43,6 +47,7 @@ By the end of this week, you will:
    ```
 
 3. **Sync Environment & Install Dependencies** (10 min)
+
    ```powershell
    # Sync environment (creates .venv and installs all dependencies from pyproject.toml)
    uv sync
@@ -54,12 +59,14 @@ By the end of this week, you will:
    ```
 
 4. **Create Folder Structure** (5 min)
+
    ```bash
    # Create additional folders if needed (some may already exist)
    mkdir -p notebooks prompts rag eval agents tools scripts data/raw data/processed docs/weeks
    ```
 
 5. **Create .gitignore** (5 min)
+
    ```bash
    # Create .gitignore file
    echo ".venv/
@@ -73,6 +80,7 @@ By the end of this week, you will:
    ```
 
 6. **Verify Setup** (5 min)
+
    ```powershell
    # Check Python version
    uv run python --version
@@ -83,12 +91,14 @@ By the end of this week, you will:
    ```
 
 **Exercise:**
+
 - [ ] Verify `uv` is installed: `uv --version`
 - [ ] Run `uv sync` to set up environment
 - [ ] Verify packages: `uv run python -c "import openai; import anthropic; print('Dependencies OK')"`
 - [ ] Review project structure matches expected folders
 
 **Resources:**
+
 - [uv Documentation](https://docs.astral.sh/uv/)
 - [uv Getting Started](https://docs.astral.sh/uv/getting-started/installation/)
 - Ed Donner's Course: Lesson 1-2 (Setup & Environment)
@@ -107,12 +117,14 @@ By the end of this week, you will:
    - Copy the key (you won't see it again!)
 
 2. **Set Up Environment Variables** (10 min)
+
    ```bash
    # Create .env file in project root
    # NEVER commit this file!
    ```
-   
+
    Create `.env` file:
+
    ```env
    # OpenAI
    OPENAI_API_KEY=sk-your-key-here
