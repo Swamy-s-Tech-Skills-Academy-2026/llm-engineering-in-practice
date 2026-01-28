@@ -140,8 +140,9 @@ By the end of this week, you will:
    ```
 
 3. **Create API Client Helper** (10 min)
-   
+
    Create `scripts/api_client.py`:
+
    ```python
    import os
    from dotenv import load_dotenv
@@ -211,18 +212,21 @@ By the end of this week, you will:
    ```
 
 **Exercise:**
+
 - [ ] Run `python scripts/api_client.py` - should see success messages for both providers
 - [ ] Verify `.env` is in `.gitignore`
 - [ ] Test that you get an error if you remove the API keys
 - [ ] Compare OpenAI vs Azure OpenAI response formats
 
 **Security Checklist:**
+
 - [ ] `.env` file is NOT committed to git
 - [ ] `.env` is in `.gitignore`
 - [ ] API keys are never hardcoded in scripts
 - [ ] You understand the cost implications of API usage
 
 **Resources:**
+
 - Ed Donner's Course: Lesson 3 (API Authentication)
 - [OpenAI API Key Best Practices](https://platform.openai.com/docs/guides/production-best-practices)
 
@@ -235,8 +239,9 @@ By the end of this week, you will:
 **Tasks (30 min):**
 
 1. **Create Hello World Script** (15 min)
-   
+
    Create `notebooks/01_hello_llm.py`:
+
    ```python
    import sys
    sys.path.append('..')
@@ -269,28 +274,33 @@ By the end of this week, you will:
    ```
 
 2. **Understand Response Structure** (10 min)
+
    - Study the response object
    - Understand `choices`, `usage`, `model` fields
    - Learn about `role` and `content` in messages
 
 3. **Experiment with Parameters** (5 min)
+
    - Try different `temperature` values (0.0, 0.7, 1.0)
    - Try different `max_tokens` values
    - Observe how outputs change
 
 **Exercise:**
+
 - [ ] Run the script successfully
 - [ ] Modify the prompt and see how response changes
 - [ ] Try different models: `gpt-4`, `gpt-3.5-turbo`
 - [ ] Document what you learned about parameters
 
 **Key Concepts Learned:**
+
 - Message roles: `system`, `user`, `assistant`
 - Temperature: Controls randomness (0.0 = deterministic, 1.0 = creative)
 - Max tokens: Limits response length
 - Token usage: Track your API costs
 
 **Resources:**
+
 - Ed Donner's Course: Lesson 4 (Making Your First Call)
 - [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/chat)
 
@@ -307,6 +317,7 @@ By the end of this week, you will:
    Create `notebooks/00_diagnostics.ipynb` with these cells:
 
    **Cell 1: Import and Setup**
+
    ```python
    import sys
    sys.path.append('..')
@@ -320,6 +331,7 @@ By the end of this week, you will:
    ```
 
    **Cell 2: API Key Check**
+
    ```python
    api_key = os.getenv("OPENAI_API_KEY")
    if api_key:
@@ -329,6 +341,7 @@ By the end of this week, you will:
    ```
 
    **Cell 3: Token Counting Test**
+
    ```python
    from tiktoken import get_encoding
    
@@ -343,6 +356,7 @@ By the end of this week, you will:
    ```
 
    **Cell 4: Simple API Call**
+
    ```python
    client = get_openai_client()
    
@@ -357,6 +371,7 @@ By the end of this week, you will:
    ```
 
    **Cell 5: Error Handling Test**
+
    ```python
    # Test error handling
    try:
@@ -372,20 +387,24 @@ By the end of this week, you will:
    ```
 
 2. **Run All Cells** (5 min)
+
    - Execute each cell
    - Verify all checks pass
    - Fix any errors
 
 **Exercise:**
+
 - [ ] All cells execute successfully
 - [ ] Add a cell that tests Anthropic API (if you have key)
 - [ ] Add a cell that calculates estimated cost for a sample call
 - [ ] Save the notebook
 
 **Deliverable:**
+
 - Working `notebooks/00_diagnostics.ipynb` with all tests passing
 
 **Resources:**
+
 - [Jupyter Notebook Tutorial](https://jupyter-notebook.readthedocs.io/)
 - [tiktoken Library](https://github.com/openai/tiktoken) - Token counting
 
@@ -410,8 +429,9 @@ By the end of this week, you will:
    - Fix any errors
 
 3. **Reflection & Documentation** (10 min)
-   
+
    Create `docs/week01_reflection.md`:
+
    ```markdown
    # Week 1 Reflection
    
@@ -429,10 +449,12 @@ By the end of this week, you will:
    ```
 
 4. **Prepare for Week 2** (5 min)
+
    - Review Week 2 preview in learning-plan.md
    - Ensure all Week 1 deliverables are complete
 
 **Week 1 Deliverables Checklist:**
+
 - [ ] Virtual environment created via `uv sync` (no manual activation needed)
 - [ ] `.env` file with API keys (not committed)
 - [ ] `scripts/api_client.py` working
@@ -443,6 +465,7 @@ By the end of this week, you will:
 - [ ] Week 1 reflection completed
 
 **Self-Assessment:**
+
 - [ ] Can I explain what tokens are?
 - [ ] Can I make an API call without looking at documentation?
 - [ ] Do I understand why `.env` files shouldn't be committed?
@@ -455,13 +478,15 @@ By the end of this week, you will:
 ### What Are Tokens?
 
 **Tokens** are the units LLMs process. They're not exactly words:
+
 - 1 token ≈ 0.75 words (English)
 - 1 token ≈ 3-4 characters
 - Common words = 1 token
 - Rare/complex words = multiple tokens
 
 **Example:**
-```
+
+```text
 "Hello world" = 2 tokens
 "LLM Engineering" = 3 tokens (LLM + Engineering = 3)
 "ChatGPT" = 1 token
@@ -470,10 +495,12 @@ By the end of this week, you will:
 ### Why Tokens Matter
 
 1. **Cost**: You pay per token (input + output)
+
    - GPT-3.5-turbo: ~$0.0015 per 1K input tokens, $0.002 per 1K output tokens
    - Example: 1000 input + 500 output = ~$0.0025
 
 2. **Context Window**: Maximum tokens in a conversation
+
    - GPT-3.5-turbo: 16,385 tokens
    - GPT-4: 8,192 tokens (some variants have 32,768)
    - Exceeding = error or truncation
@@ -503,6 +530,7 @@ print(f"Estimated cost (GPT-3.5): ${count_tokens(text) * 0.0015 / 1000:.6f}")
 ## 🎯 Week 1 Success Criteria
 
 You've successfully completed Week 1 if:
+
 - ✅ You can make API calls without errors
 - ✅ Your diagnostics notebook runs end-to-end
 - ✅ You understand token counting basics
@@ -522,6 +550,7 @@ You've successfully completed Week 1 if:
 ## 🔄 Next Week Preview
 
 **Week 2:** Python & Data Handling
+
 - Working with different data formats (CSV, JSON, TXT)
 - Data cleaning and preprocessing
 - Chunking text for LLMs
