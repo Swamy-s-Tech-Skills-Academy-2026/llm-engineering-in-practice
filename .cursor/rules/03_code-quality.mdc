@@ -1,0 +1,56 @@
+---
+description: Code quality standards for LLM Engineering
+globs: *.py, *.go, *.js, *.ts, *.cs
+---
+# Code Quality
+
+## Code Style
+
+### Python
+
+- Use type hints (PEP 484) for all new functions
+- Add a short docstring (one-line summary + param annotations if non-trivial)
+- Keep functions < ~60 lines; refactor if growing
+- Return structured data (dict / dataclass) instead of raw tuples when multiple related fields
+
+### General Principles
+
+- Favor small, composable modules over monolith scripts
+- Always separate concerns: data ingestion, retrieval logic, prompting, evaluation
+- Prefer explicit configuration (YAML / .env variables) over hidden constants
+- Make experiments reproducible (seed where supported, log model + prompt versions)
+
+---
+
+## Safety & Data Handling
+
+- **Never commit secrets**; rely on `.env` + `python-dotenv`
+- For scraped content, sanitize before embedding (strip scripts, collapse whitespace)
+- Redact potential PII fields in logs where feasible
+
+---
+
+## Dependencies
+
+**Python**: Prefer widely-used libs: `langchain`, `langchain-openai`, `langchain-azure-openai`, `chromadb`, `sentence-transformers`, `openai`, `anthropic`.
+
+**Node.js**: `openai`, `@azure/openai`, `langchain`, `langchain-openai`.
+
+**Go**: `github.com/sashabaranov/go-openai`, `github.com/azure/openai-assistant-go`.
+
+**.NET**: `Azure.AI.OpenAI`, `OpenAI`, `LangChain.Net`.
+
+**Frontend**: Framework-specific LLM libraries (React: `openai`, Angular: HTTP client, Next.js: API routes).
+
+- Avoid adding a dependency if native stdlib or an existing installed lib suffices
+- Pin unusual or breakage-prone versions; otherwise allow minor updates
+
+---
+
+## Anti-Patterns to Avoid
+
+- Mixing prompt literals across multiple scripts without central template
+- Hardcoding API keys
+- Large multiline functions doing data load + retrieval + generation + formatting
+- Silent `except Exception:` blocks
+- Saving derived artifacts without metadata (model name, date, params)

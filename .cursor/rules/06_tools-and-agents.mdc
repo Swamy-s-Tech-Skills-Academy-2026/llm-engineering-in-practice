@@ -1,0 +1,30 @@
+---
+description: Tool/function calling and agent implementation guidelines
+globs: tools/**/*, agents/**/*
+---
+# Tool / Function Calling
+
+## Tool Definition
+
+- Define each tool in `tools/` with: description, input schema (Pydantic or dataclass), handler function, safety notes
+- Include a `tools/registry.py` that exposes `get_tool_specs()` returning structured definitions (JSON-like) for the model
+
+---
+
+## Agents
+
+### Implementation Guidelines
+
+- Keep first implementations simple (reactive loop) before adding planning
+- Always log: step number, thought (if model provided), selected tool, tool arguments, tool result, cumulative context size
+- Provide a cancellation condition (max steps, max tokens, explicit goal reached)
+
+---
+
+## Agent Patterns
+
+This repository covers:
+- **Chain-of-Thought (CoT)**: Week 3 deep dive
+- **ReAct (Reasoning + Acting)**: Week 5 deep dive
+- **Reasoning Patterns**: Week 14 deep dive (CoT, ReAct, ToT, PoT, etc.)
+- **Agentic Frameworks**: Week 25 (LangChain, LangGraph, SDKs)

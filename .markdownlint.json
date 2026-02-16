@@ -3,6 +3,8 @@
     "MD013": false,
     "MD033": {
         "allowed_elements": [
+            "details",
+            "summary",
             "sub",
             "sup"
         ]
@@ -16,5 +18,7 @@
     },
     "MD050": {
         "style": "consistent"
-    }
+    },
+    "MD051": false,
+    "MD060": false
 }

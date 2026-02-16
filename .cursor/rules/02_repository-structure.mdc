@@ -1,0 +1,46 @@
+---
+description: Repository structure for LLM Engineering
+globs: *
+---
+# Repository Structure
+
+**Project**: LLM Engineering in Practice
+
+> **📖 Single Source of Truth**: For the complete and detailed repository structure, naming conventions, and workflow standards, please refer to [README.md](../../README.md) and [docs/learning-plan.md](../../docs/learning-plan.md).
+
+---
+
+## Directory Expectations
+
+| Folder       | Purpose                                               |
+| ------------ | ----------------------------------------------------- |
+| `prompts/`   | Prompt templates + metadata (JSON/YAML)               |
+| `rag/`       | Index builders, retrievers, query pipelines           |
+| `agents/`    | Agent loops, reasoning traces, tool registries        |
+| `tools/`     | Tool / function call schema definitions               |
+| `eval/`      | Metrics calculators, experiment logs, harness scripts |
+| `scripts/`   | CLI utilities (ingest, batch eval, cost reporting)    |
+| `notebooks/` | Exploratory analysis & prototyping                    |
+| `docs/`      | Decision logs, retrospectives, learning plan          |
+| `data/`      | Sample corpora / synthetic sets (non-sensitive)      |
+| `src/`       | Source code modules (when needed)                     |
+| `source-material/` | Staging area for raw content (Read-Only, never modify/delete) |
+
+**Note**: If a folder is missing, create it with a minimal README or `.gitkeep` when first needed.
+
+---
+
+## Folder Intent
+
+- **`prompts/`**: Prompt templates with metadata sidecars (`.prompt.txt` + `.meta.json`)
+- **`rag/`**: Retrieval prototypes (index builders, query flows)
+- **`agents/`**: Agent loops, reasoning traces, tool registries
+- **`tools/`**: Custom tool / function call definitions
+- **`eval/`**: Evaluation scripts, metrics, and experiment logging
+- **`scripts/`**: Utility CLIs (ingest, batch eval, cost reporting)
+- **`notebooks/`**: Exploratory Jupyter notebooks & analysis
+- **`docs/`**: Documentation, guides, decision logs, weekly learning plans
+- **`data/raw/`**: Unprocessed source data
+- **`data/processed/`**: Cleaned / chunked / vectorizable data
+- **`src/`**: Reusable source code modules
+- **`source-material/`**: Staging area for raw content (Read-Only, never modify/delete)

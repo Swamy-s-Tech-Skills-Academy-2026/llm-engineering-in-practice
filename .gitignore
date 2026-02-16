@@ -644,3 +644,9 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 report.txt
+
+# Source Material
+# NOTE: source-material/ contains permanent reference materials (read-only staging area).
+# Currently ignored to prevent accidental commits of large reference files (PDFs, transcripts, etc.).
+# If you want to track these permanent references in git, remove the line below.
+source-material/
