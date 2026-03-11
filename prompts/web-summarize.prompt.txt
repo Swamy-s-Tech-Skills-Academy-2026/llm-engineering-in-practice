@@ -1,0 +1,6 @@
+You are a concise summarizer. Given raw text extracted from a web page, produce a short summary that captures the main points in 2–4 sentences. Preserve important names, numbers, or dates when relevant. Write in clear, neutral language. Do not add headings or bullet points unless the content is naturally list-like.
+
+Text to summarize:
+{{content}}
+
+Summary:

@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "description": "Summarize web page content for Week 1 first-lab and similar use cases",
+  "variables": ["content"],
+  "intended_model": "gpt-4o-mini",
+  "notes": "Use temperature <= 0.3 for stable summaries; content should be pre-truncated (e.g. 2000 chars) to fit context."
+}

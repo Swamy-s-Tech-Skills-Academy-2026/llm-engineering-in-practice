@@ -299,6 +299,8 @@ By the end of this week, you will:
 - Max tokens: Limits response length
 - Token usage: Track your API costs
 
+**Optional — First LLM lab:** Try the [Week 1 First LLM Lab](../../notebooks/week1-first-llm-lab.ipynb) notebook: it fetches a web page (using the shared scraper in `src/week1/`), uses the [web-summarize](../../prompts/web-summarize.prompt.txt) prompt template, and calls the API to produce a short summary.
+
 **Resources:**
 
 - Ed Donner's Course: Lesson 4 (Making Your First Call)
@@ -308,13 +310,17 @@ By the end of this week, you will:
 
 ### Day 4: Diagnostics Notebook (30 minutes)
 
-**Learning Goal:** Create a comprehensive diagnostics notebook to test your entire setup
+**Learning Goal:** Run the diagnostics notebook to verify your entire setup
 
 **Tasks (30 min):**
 
-1. **Create Jupyter Notebook** (25 min)
+1. **Run the diagnostics** (25 min)
    
-   Create `notebooks/00_diagnostics.ipynb` with these cells:
+   Use the existing setup in `notebooks/01-setup/`:
+   - **From repo root:** `uv run python notebooks/01-setup/run_diagnostics.py`
+   - **Or open in Jupyter:** `notebooks/01-setup/02_diagnostics.ipynb`
+   
+   If you prefer to build your own from scratch, create `notebooks/00_diagnostics.ipynb` with these cells:
 
    **Cell 1: Import and Setup**
 
@@ -401,7 +407,7 @@ By the end of this week, you will:
 
 **Deliverable:**
 
-- Working `notebooks/00_diagnostics.ipynb` with all tests passing
+- Diagnostics passing (via `notebooks/01-setup/run_diagnostics.py` or `02_diagnostics.ipynb`)
 
 **Resources:**
 
@@ -457,9 +463,9 @@ By the end of this week, you will:
 
 - [ ] Virtual environment created via `uv sync` (no manual activation needed)
 - [ ] `.env` file with API keys (not committed)
-- [ ] `scripts/api_client.py` working
-- [ ] `notebooks/00_diagnostics.ipynb` complete and passing
-- [ ] `notebooks/01_hello_llm.py` working
+- [ ] `scripts/api_client.py` working (run from repo root: `uv run python scripts/api_client.py`)
+- [ ] Diagnostics passing (`notebooks/01-setup/run_diagnostics.py` or `02_diagnostics.ipynb`)
+- [ ] First LLM lab done: [notebooks/week1-first-llm-lab.ipynb](../../notebooks/week1-first-llm-lab.ipynb) (web summarizer using `prompts/web-summarize.prompt.txt`)
 - [ ] `pyproject.toml` and `uv.lock` in place (managed by `uv sync`)
 - [ ] `.gitignore` configured
 - [ ] Week 1 reflection completed
