@@ -3,9 +3,12 @@
 This module provides basic website content extraction functionality.
 Based on the original course implementation with improvements.
 """
-from bs4 import BeautifulSoup
-import requests
+from __future__ import annotations
 
+from typing import List
+
+import requests
+from bs4 import BeautifulSoup
 
 # Standard headers to fetch a website
 headers = {
@@ -13,10 +16,13 @@ headers = {
 }
 
 
-def fetch_website_contents(url):
-    """
-    Return the title and contents of the website at the given url;
-    truncate to 2,000 characters as a sensible limit
+def fetch_website_contents(url: str) -> str:
+    """Return the title and main text of the page at url; truncated to 2,000 chars.
+
+    Args:
+        url: Page URL to fetch.
+    Returns:
+        Concatenated title and body text, up to 2,000 characters.
     """
     response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.content, "html.parser")
@@ -30,11 +36,13 @@ def fetch_website_contents(url):
     return (title + "\n\n" + text)[:2_000]
 
 
-def fetch_website_links(url):
-    """
-    Return the links on the website at the given url
-    I realize this is inefficient as we're parsing twice! This is to keep the code in the lab simple.
-    Feel free to use a class and optimize it!
+def fetch_website_links(url: str) -> List[str]:
+    """Return the href values of all links on the page.
+
+    Args:
+        url: Page URL to fetch.
+    Returns:
+        List of link href strings (empty strings omitted).
     """
     response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.content, "html.parser")

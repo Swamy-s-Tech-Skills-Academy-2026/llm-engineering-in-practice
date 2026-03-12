@@ -135,7 +135,7 @@ This project uses **uv** for fast Python package management.
 4. **Verify setup** (optional):
 
    ```powershell
-   cd notebooks/01-setup && uv run python diagnostics.py
+   cd notebooks/01-setup && uv run python run_diagnostics.py
    ```
 
 5. **Run Jupyter** (optional):
@@ -282,7 +282,7 @@ setx OPENAI_API_KEY "sk-..."  # (bash/zsh: export OPENAI_API_KEY="sk-...")
 Verify your environment is properly configured by running the diagnostics script:
 
 ```powershell
-cd notebooks/01-setup && uv run python diagnostics.py
+cd notebooks/01-setup && uv run python run_diagnostics.py
 ```
 
 This will check:

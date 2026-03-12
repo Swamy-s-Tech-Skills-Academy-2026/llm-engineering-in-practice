@@ -32,12 +32,13 @@ jobs:
         uv run flake8 src/ --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics || true
     - name: Check notebook syntax (basic)
       run: |
-        # Basic check: ensure notebooks can be parsed (files are properly closed using context manager)
+        # Basic check: ensure notebooks can be parsed (notebooks/ and src/)
         uv run python << 'PYTHON_SCRIPT'
         import json
         import glob
-        for notebook in glob.glob('notebooks/**/*.ipynb'):
-            with open(notebook, 'r', encoding='utf-8') as f:
-                json.load(f)
+        for pattern in ['notebooks/**/*.ipynb', 'src/**/*.ipynb']:
+            for notebook in glob.glob(pattern):
+                with open(notebook, 'r', encoding='utf-8') as f:
+                    json.load(f)
         PYTHON_SCRIPT
         || echo "No notebooks found or syntax error"
