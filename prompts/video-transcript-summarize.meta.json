@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "description": "Summarize video/podcast transcript for Week 1 video-transcript lab",
+  "variables": ["content"],
+  "intended_model": "gpt-4o-mini",
+  "notes": "Use temperature <= 0.3; truncate long transcripts (e.g. first 4000 chars) to fit context."
+}
