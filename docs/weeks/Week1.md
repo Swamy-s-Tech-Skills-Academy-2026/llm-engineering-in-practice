@@ -301,6 +301,8 @@ By the end of this week, you will:
 
 **Optional — First LLM lab:** Try the [Week 1 First LLM Lab](../../notebooks/week1-first-llm-lab.ipynb) notebook: it fetches a web page (using the shared scraper in `src/week1/`), uses the [web-summarize](../../prompts/web-summarize.prompt.txt) prompt template, and calls the API to produce a short summary.
 
+**Optional — Video/transcript lab:** Try the [Week 1 Video Transcript Lab](../../notebooks/week1-video-transcript-lab.ipynb) for **video-to-text** then summarization: it uses a YouTube transcript (or a sample) and the [video-transcript-summarize](../../prompts/video-transcript-summarize.prompt.txt) prompt to get a short summary of spoken content.
+
 **Resources:**
 
 - Ed Donner's Course: Lesson 4 (Making Your First Call)
@@ -466,6 +468,7 @@ By the end of this week, you will:
 - [ ] `scripts/api_client.py` working (run from repo root: `uv run python scripts/api_client.py`)
 - [ ] Diagnostics passing (`notebooks/01-setup/run_diagnostics.py` or `02_diagnostics.ipynb`)
 - [ ] First LLM lab done: [notebooks/week1-first-llm-lab.ipynb](../../notebooks/week1-first-llm-lab.ipynb) (web summarizer using `prompts/web-summarize.prompt.txt`)
+- [ ] (Optional) Video/transcript lab: [notebooks/week1-video-transcript-lab.ipynb](../../notebooks/week1-video-transcript-lab.ipynb) (video-to-text + summarization using `prompts/video-transcript-summarize.prompt.txt`)
 - [ ] `pyproject.toml` and `uv.lock` in place (managed by `uv sync`)
 - [ ] `.gitignore` configured
 - [ ] Week 1 reflection completed
