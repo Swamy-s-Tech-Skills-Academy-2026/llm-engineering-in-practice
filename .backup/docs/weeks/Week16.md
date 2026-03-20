@@ -10,6 +10,7 @@
 ## 🎯 Week 16 Learning Objectives
 
 By the end of this week, you will:
+
 - [ ] Optimize for production
 - [ ] Manage costs effectively
 - [ ] Tune performance
@@ -91,7 +92,7 @@ By the end of this week, you will:
                "cost": cost,
                "timestamp": time.time()
            })
-       
+
        def get_dashboard(self):
            """Generate metrics dashboard"""
            return {
@@ -154,4 +155,3 @@ By the end of this week, you will:
 - Custom metrics
 - A/B testing
 - Evaluation automation
-

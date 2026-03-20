@@ -113,6 +113,7 @@ If you prefer the traditional approach or if uv doesn't work for your setup:
    ```
 
    If you don't have Python 3.12, install it from <https://www.python.org/downloads/>. Make sure to:
+
    - Check "Add Python to PATH" during installation
    - Select "Install for all users" if you have admin rights
    - Choose "Customize installation" and ensure pip is included
@@ -122,7 +123,7 @@ If you prefer the traditional approach or if uv doesn't work for your setup:
    ```powershell
    # Create virtual environment with Python 3.12
    py -3.12 -m venv .venv
-   
+
    # Activate the virtual environment
    .venv\Scripts\Activate.ps1
    ```
@@ -138,7 +139,7 @@ If you prefer the traditional approach or if uv doesn't work for your setup:
    ```powershell
    # Using uv (recommended - faster and more reliable):
    uv sync
-   
+
    # Alternative using pip (if not using uv):
    # Note: requirements.txt has been moved to .backup/
    # You can use: pip install from pyproject.toml or export from uv:
@@ -214,6 +215,7 @@ cd notebooks/01-setup && uv run python 01_diagnostics.py
 
 # If using venv (make sure it's activated):
 cd notebooks/01-setup && python 01_diagnostics.py
+
 ```
 
 This will create a timestamped diagnostics report in `docs/reports/` with comprehensive system information.
@@ -226,6 +228,7 @@ Let's verify your LLM environment is working:
 # Test the evaluation utilities
 uv run python -m eval.log_utils
 uv run python -m eval.metrics
+
 ```
 
 ### Open Your First Learning Notebook

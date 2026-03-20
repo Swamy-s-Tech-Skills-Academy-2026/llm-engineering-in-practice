@@ -10,6 +10,7 @@
 ## 🎯 Week 22 Learning Objectives
 
 By the end of this week, you will:
+
 - [ ] Build LLM applications in Python, Go, and Node.js
 - [ ] Implement same concepts across all three languages
 - [ ] Understand language-specific patterns and best practices
@@ -40,7 +41,7 @@ By the end of this week, you will:
    from typing import Optional
    from openai import OpenAI, AzureOpenAI
    from openai import AsyncOpenAI, AsyncAzureOpenAI
-   
+
    class LLMClient:
        def __init__(self, provider: str = "openai", **kwargs):
            if provider == "openai":
@@ -51,10 +52,10 @@ By the end of this week, you will:
                    endpoint=kwargs['endpoint'],
                    api_version=kwargs.get('api_version', '2024-02-15-preview')
                )
-       
+
        async def chat_completion_async(
-           self, 
-           messages: list, 
+           self,
+           messages: list,
            model: str,
            temperature: float = 0.7
        ) -> str:
@@ -91,30 +92,30 @@ By the end of this week, you will:
    ```go
    // Go implementation with both providers
    package main
-   
+
    import (
        "context"
        "fmt"
        "os"
-       
+
        "github.com/sashabaranov/go-openai"
        "github.com/azure/openai-assistant-go"
    )
-   
+
    type LLMProvider interface {
        ChatCompletion(ctx context.Context, req ChatRequest) (string, error)
    }
-   
+
    type OpenAIProvider struct {
        client *openai.Client
    }
-   
+
    func NewOpenAIProvider(apiKey string) *OpenAIProvider {
        return &OpenAIProvider{
            client: openai.NewClient(apiKey),
        }
    }
-   
+
    func (p *OpenAIProvider) ChatCompletion(ctx context.Context, req ChatRequest) (string, error) {
        resp, err := p.client.CreateChatCompletion(ctx, openai.ChatCompletionRequest{
            Model:       req.Model,
@@ -126,17 +127,17 @@ By the end of this week, you will:
        }
        return resp.Choices[0].Message.Content, nil
    }
-   
+
    type AzureOpenAIProvider struct {
        client *assistant.Client
    }
-   
+
    func NewAzureOpenAIProvider(endpoint, apiKey, apiVersion string) *AzureOpenAIProvider {
        return &AzureOpenAIProvider{
            client: assistant.NewClient(endpoint, apiKey, apiVersion),
        }
    }
-   
+
    func (p *AzureOpenAIProvider) ChatCompletion(ctx context.Context, req ChatRequest) (string, error) {
        resp, err := p.client.CreateChatCompletion(ctx, assistant.ChatCompletionRequest{
            Model:       req.Model,
@@ -174,7 +175,7 @@ By the end of this week, you will:
    // Node.js implementation with both providers
    import OpenAI from 'openai';
    import { AzureOpenAI } from 'openai';
-   
+
    class LLMClient {
        constructor(provider, config) {
            if (provider === 'openai') {
@@ -189,7 +190,7 @@ By the end of this week, you will:
                });
            }
        }
-       
+
        async chatCompletion(messages, model, temperature = 0.7) {
            try {
                const response = await this.client.chat.completions.create({
@@ -204,7 +205,7 @@ By the end of this week, you will:
            }
        }
    }
-   
+
    // Usage
    const openaiClient = new LLMClient('openai', { apiKey: process.env.OPENAI_API_KEY });
    const azureClient = new LLMClient('azure_openai', {
@@ -267,4 +268,3 @@ By the end of this week, you will:
 - Angular services
 - Next.js API routes
 - Real-time UI updates
-

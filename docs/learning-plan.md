@@ -28,10 +28,10 @@ This learning plan is designed to accompany **Ed Donner's "LLM Engineering: Mast
    ```powershell
    # Windows (PowerShell)
    powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-   
+
    # macOS/Linux
    curl -LsSf https://astral.sh/uv/install.sh | sh
-   
+
    # Alternative (via pip)
    pip install uv
    ```
@@ -41,7 +41,7 @@ This learning plan is designed to accompany **Ed Donner's "LLM Engineering: Mast
    ```powershell
    # Sync environment (creates .venv and installs all dependencies from pyproject.toml)
    uv sync
-   
+
    # Or use uv run prefix (no activation needed)
    uv run python --version
    ```
@@ -219,6 +219,7 @@ data/raw/           # Unmodified source data (never commit secrets)
 data/processed/     # Cleaned / chunked / vectorizable data
 scripts/            # CLI utilities (ingest, batch_eval, cost_report)
 docs/               # Decision logs, retrospectives, deep dives
+
 ```
 
 Keep structure emergent: create folders only when you add first artifact.
@@ -281,22 +282,23 @@ Use this for each week:
 ## Week [X] Review - [Date]
 
 ### What I Learned
-- 
+-
 
 ### What I Built
-- 
+-
 
 ### Challenges Faced
-- 
+-
 
 ### Solutions Found
-- 
+-
 
 ### Next Week Goals
-- 
+-
 
 ### Time Spent
 - Total: ___ hours
+
 ```
 
 ---

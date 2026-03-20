@@ -10,6 +10,7 @@
 ## 🎯 Week 8 Learning Objectives
 
 By the end of this week, you will:
+
 - [ ] Build a complete LLM application
 - [ ] Create user interfaces (Gradio/CLI)
 - [ ] Integrate all learned concepts
@@ -85,15 +86,15 @@ By the end of this week, you will:
    - Both
 
 2. **Implement Interface** (25 min)
-   
+
    **Gradio Example:**
    ```python
    import gradio as gr
-   
+
    def summarize(text):
        # Your summarization logic
        return summary
-   
+
    interface = gr.Interface(
        fn=summarize,
        inputs="textbox",
@@ -163,4 +164,3 @@ By the end of this week, you will:
 - Planning agents vs reactive
 - Advanced reasoning patterns
 - Multi-step planning
-

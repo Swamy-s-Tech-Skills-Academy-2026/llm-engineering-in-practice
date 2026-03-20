@@ -10,6 +10,7 @@
 ## 🎯 Week 15 Learning Objectives
 
 By the end of this week, you will:
+
 - [ ] Design multi-agent systems
 - [ ] Implement agent coordination
 - [ ] Handle agent communication
@@ -61,14 +62,14 @@ By the end of this week, you will:
        def __init__(self, agents: List[Agent]):
            self.agents = agents
            self.coordinator = CoordinatorAgent()
-       
+
        def solve(self, task: str):
            # Delegate to agents
            results = []
            for agent in self.agents:
                result = agent.solve(task)
                results.append(result)
-           
+
            # Coordinate results
            return self.coordinator.aggregate(results)
    ```
@@ -97,7 +98,7 @@ By the end of this week, you will:
        def send_message(self, recipient: str, message: str):
            """Send message to another agent"""
            pass
-       
+
        def receive_message(self) -> Message:
            """Receive message from message queue"""
            pass
@@ -154,4 +155,3 @@ By the end of this week, you will:
 - Cost management
 - Performance tuning
 - Monitoring and observability
-

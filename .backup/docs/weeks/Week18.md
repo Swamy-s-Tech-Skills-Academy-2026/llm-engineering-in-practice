@@ -10,6 +10,7 @@
 ## 🎯 Week 18 Learning Objectives
 
 By the end of this week, you will:
+
 - [ ] Build domain-specific applications
 - [ ] Adapt LLMs for specialized use cases
 - [ ] Create custom solutions
@@ -88,12 +89,12 @@ By the end of this week, you will:
    ```python
    DOMAIN_PROMPT = """
    You are a {domain} expert assistant.
-   
+
    Domain Knowledge:
    {domain_knowledge}
-   
+
    Task: {task}
-   
+
    Follow {domain} best practices.
    """
    ```
@@ -149,4 +150,3 @@ By the end of this week, you will:
 - Experimentation frameworks
 - Advanced techniques
 - Staying current
-

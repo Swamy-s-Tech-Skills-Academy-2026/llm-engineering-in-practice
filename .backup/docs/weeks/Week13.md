@@ -10,6 +10,7 @@
 ## 🎯 Week 13 Learning Objectives
 
 By the end of this week, you will:
+
 - [ ] Implement advanced RAG techniques
 - [ ] Use hybrid search (keyword + semantic)
 - [ ] Implement reranking
@@ -38,10 +39,10 @@ By the end of this week, you will:
        """Combine keyword and semantic search"""
        # Keyword search
        keyword_results = bm25_search(query, documents)
-       
+
        # Semantic search
        semantic_results = semantic_search(query, documents)
-       
+
        # Combine and rerank
        combined = combine_results(keyword_results, semantic_results)
        return combined[:top_k]
@@ -73,7 +74,7 @@ By the end of this week, you will:
        for result in results:
            score = cross_encoder_score(query, result)
            scores.append((score, result))
-       
+
        scores.sort(reverse=True)
        return [result for _, result in scores[:top_k]]
    ```
@@ -152,4 +153,3 @@ By the end of this week, you will:
 - When to use each
 - Combining patterns
 - Advanced reasoning
-

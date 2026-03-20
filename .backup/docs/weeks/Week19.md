@@ -10,6 +10,7 @@
 ## 🎯 Week 19 Learning Objectives
 
 By the end of this week, you will:
+
 - [ ] Conduct LLM research
 - [ ] Design experiments
 - [ ] Analyze results
@@ -62,7 +63,7 @@ By the end of this week, you will:
    class ExperimentFramework:
        def __init__(self):
            self.experiments = []
-       
+
        def run_experiment(self, config: dict):
            """Run experiment with tracking"""
            result = execute_experiment(config)
@@ -149,4 +150,3 @@ By the end of this week, you will:
 - Advanced techniques
 - Future directions
 - Continued learning
-

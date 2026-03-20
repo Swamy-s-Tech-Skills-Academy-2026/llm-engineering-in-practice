@@ -10,6 +10,7 @@
 ## 🎯 Week 6 Learning Objectives
 
 By the end of this week, you will:
+
 - [ ] Generate structured JSON outputs from LLMs
 - [ ] Use function calling APIs
 - [ ] Define tool schemas
@@ -50,18 +51,18 @@ By the end of this week, you will:
        prompt = f"""
        Analyze this text and return JSON matching this schema:
        {json.dumps(schema, indent=2)}
-       
+
        Text: {text}
-       
+
        Return only valid JSON:
        """
-       
+
        response = client.chat.completions.create(
            model="gpt-4",
            messages=[{"role": "user", "content": prompt}],
            response_format={"type": "json_object"}  # GPT-4 feature
        )
-       
+
        return json.loads(response.choices[0].message.content)
    ```
 
@@ -104,7 +105,7 @@ By the end of this week, you will:
        functions=functions,
        function_call="auto"
    )
-   
+
    # Check if function call requested
    message = response.choices[0].message
    if message.function_call:
@@ -137,13 +138,13 @@ By the end of this week, you will:
    class ToolRegistry:
        def __init__(self):
            self.tools = {}
-       
+
        def register(self, name: str, schema: dict, handler: callable):
            self.tools[name] = {
                "schema": schema,
                "handler": handler
            }
-       
+
        def get_function_definitions(self):
            """Convert to OpenAI function format"""
            return [
@@ -172,7 +173,7 @@ By the end of this week, you will:
 1. **JSON Validation** (15 min)
    ```python
    import jsonschema
-   
+
    def validate_output(data: dict, schema: dict) -> tuple[bool, str]:
        """Validate JSON against schema"""
        try:
@@ -204,7 +205,7 @@ By the end of this week, you will:
    ```bash
    # Install Go if needed: https://go.dev/doc/install
    go version  # Verify Go 1.21+
-   
+
    # Create Go module
    mkdir llm-go && cd llm-go
    go mod init llm-go
@@ -214,7 +215,7 @@ By the end of this week, you will:
    ```go
    // main.go - Structured outputs in Go
    package main
-   
+
    import (
        "bytes"
        "encoding/json"
@@ -223,70 +224,70 @@ By the end of this week, you will:
        "net/http"
        "os"
    )
-   
+
    type ChatRequest struct {
        Model       string    `json:"model"`
        Messages    []Message `json:"messages"`
        Temperature float64   `json:"temperature"`
    }
-   
+
    type Message struct {
        Role    string `json:"role"`
        Content string `json:"content"`
    }
-   
+
    type ChatResponse struct {
        Choices []Choice `json:"choices"`
    }
-   
+
    type Choice struct {
        Message Message `json:"message"`
    }
-   
+
    func callOpenAI(messages []Message, provider string) (string, error) {
        apiKey := os.Getenv("OPENAI_API_KEY")
        endpoint := "https://api.openai.com/v1/chat/completions"
-       
+
        if provider == "azure" {
            apiKey = os.Getenv("AZURE_OPENAI_API_KEY")
            endpoint = fmt.Sprintf("%s/openai/deployments/gpt-4/chat/completions?api-version=2024-02-15-preview",
                os.Getenv("AZURE_OPENAI_ENDPOINT"))
        }
-       
+
        reqBody := ChatRequest{
            Model:       "gpt-4",
            Messages:    messages,
            Temperature: 0.7,
        }
-       
+
        jsonData, _ := json.Marshal(reqBody)
        req, _ := http.NewRequest("POST", endpoint, bytes.NewBuffer(jsonData))
        req.Header.Set("Content-Type", "application/json")
        req.Header.Set("Authorization", "Bearer "+apiKey)
-       
+
        client := &http.Client{}
        resp, err := client.Do(req)
        if err != nil {
            return "", err
        }
        defer resp.Body.Close()
-       
+
        body, _ := io.ReadAll(resp.Body)
        var chatResp ChatResponse
        json.Unmarshal(body, &chatResp)
-       
+
        return chatResp.Choices[0].Message.Content, nil
    }
-   
+
    func main() {
        messages := []Message{
            {Role: "user", Content: "Extract key info from: 'Product X costs $99 and ships in 2 days'"},
        }
-       
+
        // Test with OpenAI
        response, _ := callOpenAI(messages, "openai")
        fmt.Println("OpenAI Response:", response)
-       
+
        // Test with Azure OpenAI
        response, _ = callOpenAI(messages, "azure")
        fmt.Println("Azure OpenAI Response:", response)
@@ -328,4 +329,3 @@ By the end of this week, you will:
 - Caching strategies
 - Model selection
 - Node.js implementation examples
-

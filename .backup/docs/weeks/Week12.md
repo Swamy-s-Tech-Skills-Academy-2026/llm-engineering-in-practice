@@ -10,6 +10,7 @@
 ## 🎯 Week 12 Learning Objectives
 
 By the end of this week, you will:
+
 - [ ] Review all learned concepts
 - [ ] Conduct advanced experiments
 - [ ] Create comprehensive retrospective
@@ -79,21 +80,26 @@ By the end of this week, you will:
 1. **Create Retrospective** (20 min)
    ```markdown
    # 12-Week Learning Retrospective
-   
+
    ## What I Learned
-   - 
-   
+
+   -
+
    ## Most Valuable Concepts
-   - 
-   
+
+   -
+
    ## Challenges Overcome
-   - 
-   
+
+   -
+
    ## Skills Developed
-   - 
-   
+
+   -
+
    ## Areas for Improvement
-   - 
+
+   -
    ```
 
 2. **Lessons Learned** (10 min)
@@ -161,9 +167,10 @@ By the end of this week, you will:
 
 ---
 
-## 🎓 Congratulations!
+## 🎓 Congratulations
 
 You've completed 12 weeks of LLM Engineering learning! You now have:
+
 - ✅ Solid foundation in LLM engineering
 - ✅ Mastery of CoT and ReAct
 - ✅ Practical project experience
@@ -206,4 +213,3 @@ See [`Week13.md`](Week13.md) through [`Week25.md`](Week25.md) for the complete l
 ---
 
 **Remember:** Learning never stops. Keep building, experimenting, and sharing!
-

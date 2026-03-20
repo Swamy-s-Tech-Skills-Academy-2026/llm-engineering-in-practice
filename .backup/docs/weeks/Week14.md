@@ -10,6 +10,7 @@
 ## 🎯 Week 14 Learning Objectives
 
 By the end of this week, you will:
+
 - [ ] Master different reasoning patterns
 - [ ] Understand when to use each pattern
 - [ ] Combine reasoning patterns
@@ -62,15 +63,15 @@ By the end of this week, you will:
    def tree_of_thoughts(problem: str, num_paths: int = 3):
        """Explore multiple reasoning paths"""
        paths = []
-       
+
        for _ in range(num_paths):
            # Generate different reasoning path
            path = generate_reasoning_path(problem)
            paths.append(path)
-       
+
        # Evaluate each path
        scores = [evaluate_path(p) for p in paths]
-       
+
        # Return best path
        best_idx = scores.index(max(scores))
        return paths[best_idx]
@@ -100,13 +101,13 @@ By the end of this week, you will:
        """Solve using least-to-most approach"""
        # Step 1: Decompose
        subproblems = decompose_problem(problem)
-       
+
        # Step 2: Solve subproblems
        solutions = []
        for subproblem in subproblems:
            solution = solve_subproblem(subproblem)
            solutions.append(solution)
-       
+
        # Step 3: Combine
        final_answer = combine_solutions(solutions)
        return final_answer
@@ -138,11 +139,11 @@ By the end of this week, you will:
        code_prompt = f"""
        Write Python code to solve this problem:
        {problem}
-       
+
        Code:
        """
        code = generate_code(code_prompt)
-       
+
        # Execute code
        result = execute_code(code)
        return result
@@ -204,16 +205,17 @@ def hybrid_reasoning(problem: str):
     """Combine multiple reasoning patterns"""
     # Use CoT for initial reasoning
     initial_thought = chain_of_thought(problem)
-    
+
     # Use ReAct if tools needed
     if needs_tools(initial_thought):
         return react_with_tools(problem)
-    
+
     # Use ToT for complex problems
     if is_complex(problem):
         return tree_of_thoughts(problem)
-    
+
     return initial_thought
+
 ```
 
 ---
@@ -225,4 +227,3 @@ def hybrid_reasoning(problem: str):
 - Multi-agent architectures
 - Agent communication
 - Complex multi-agent tasks
-

@@ -10,6 +10,7 @@
 ## 🎯 Week 7 Learning Objectives
 
 By the end of this week, you will:
+
 - [ ] Optimize API call latency
 - [ ] Reduce token costs
 - [ ] Implement caching strategies
@@ -31,7 +32,7 @@ By the end of this week, you will:
    ```python
    import asyncio
    from openai import AsyncOpenAI
-   
+
    async def batch_calls(prompts: List[str]):
        """Make multiple API calls in parallel"""
        client = AsyncOpenAI()
@@ -54,7 +55,7 @@ By the end of this week, you will:
            messages=[{"role": "user", "content": prompt}],
            stream=True
        )
-       
+
        for chunk in stream:
            if chunk.choices[0].delta.content:
                print(chunk.choices[0].delta.content, end="")
@@ -101,16 +102,16 @@ By the end of this week, you will:
    import hashlib
    import json
    from functools import lru_cache
-   
+
    cache = {}
-   
+
    def cached_llm_call(prompt: str, model: str):
        """Cache LLM responses"""
        cache_key = hashlib.md5(f"{prompt}:{model}".encode()).hexdigest()
-       
+
        if cache_key in cache:
            return cache[cache_key]
-       
+
        response = client.chat.completions.create(...)
        cache[cache_key] = response.choices[0].message.content
        return cache[cache_key]
@@ -142,12 +143,12 @@ By the end of this week, you will:
                "cost": [],
                "tokens": []
            }
-       
+
        def track_call(self, latency: float, tokens: int, cost: float):
            self.metrics["latency"].append(latency)
            self.metrics["tokens"].append(tokens)
            self.metrics["cost"].append(cost)
-       
+
        def get_stats(self):
            return {
                "avg_latency": sum(self.metrics["latency"]) / len(self.metrics["latency"]),
@@ -178,7 +179,7 @@ By the end of this week, you will:
    ```bash
    # Install Node.js if needed: https://nodejs.org/
    node --version  # Verify Node.js 18+
-   
+
    # Create Node.js project
    mkdir llm-nodejs && cd llm-nodejs
    npm init -y
@@ -224,4 +225,3 @@ By the end of this week, you will:
 - Build polished micro-applications
 - Multi-language support (Python, Go, Node.js)
 - Gradio or CLI interfaces
-

@@ -10,6 +10,7 @@
 ## 🎯 Week 25 Learning Objectives
 
 By the end of this week, you will:
+
 - [ ] Master LangChain for agent development
 - [ ] Build workflows with LangGraph
 - [ ] Use OpenAI Agent SDK effectively
@@ -31,7 +32,7 @@ By the end of this week, you will:
    ```powershell
    # Using uv (recommended)
    uv add langchain langchain-openai langchain-azure-openai
-   
+
    # Or if already in pyproject.toml, just sync
    uv sync
    ```
@@ -42,22 +43,22 @@ By the end of this week, you will:
    from langchain_openai import ChatOpenAI
    from langchain.prompts import ChatPromptTemplate
    from langchain.chains import LLMChain
-   
+
    # Initialize OpenAI LLM
    llm_openai = ChatOpenAI(
        model="gpt-4",
        temperature=0.7,
        openai_api_key=os.getenv("OPENAI_API_KEY")
    )
-   
+
    # Create prompt template
    prompt = ChatPromptTemplate.from_template(
        "You are a helpful assistant. Answer: {question}"
    )
-   
+
    # Create chain
    chain = prompt | llm_openai
-   
+
    # Run chain
    response = chain.invoke({"question": "What is LLM Engineering?"})
    print(response.content)
@@ -67,7 +68,7 @@ By the end of this week, you will:
    ```python
    # LangChain with Azure OpenAI
    from langchain_azure_openai import AzureChatOpenAI
-   
+
    # Initialize Azure OpenAI LLM
    llm_azure = AzureChatOpenAI(
        azure_deployment="gpt-4",
@@ -76,7 +77,7 @@ By the end of this week, you will:
        api_version="2024-02-15-preview",
        temperature=0.7
    )
-   
+
    # Use same chain pattern
    chain_azure = prompt | llm_azure
    response = chain_azure.invoke({"question": "What is LLM Engineering?"})
@@ -100,7 +101,7 @@ By the end of this week, you will:
    ```powershell
    # Using uv (recommended)
    uv add langgraph
-   
+
    # Or if already in pyproject.toml, just sync
    uv sync
    ```
@@ -112,16 +113,16 @@ By the end of this week, you will:
    from langchain_openai import ChatOpenAI
    from typing import TypedDict, Annotated
    import operator
-   
+
    # Define state
    class AgentState(TypedDict):
        messages: Annotated[list, operator.add]
        question: str
        answer: str
-   
+
    # Initialize LLM (works with both OpenAI and Azure OpenAI)
    llm = ChatOpenAI(model="gpt-4", temperature=0.7)
-   
+
    # Define nodes
    def research_node(state: AgentState):
        """Research step"""
@@ -129,7 +130,7 @@ By the end of this week, you will:
        # Research logic here
        research_result = "Research findings..."
        return {"messages": [{"role": "assistant", "content": research_result}]}
-   
+
    def answer_node(state: AgentState):
        """Answer generation step"""
        messages = state["messages"]
@@ -138,26 +139,26 @@ By the end of this week, you will:
            "answer": response.content,
            "messages": [{"role": "assistant", "content": response.content}]
        }
-   
+
    # Build graph
    workflow = StateGraph(AgentState)
    workflow.add_node("research", research_node)
    workflow.add_node("answer", answer_node)
-   
+
    # Define edges
    workflow.set_entry_point("research")
    workflow.add_edge("research", "answer")
    workflow.add_edge("answer", END)
-   
+
    # Compile and run
    app = workflow.compile()
-   
+
    result = app.invoke({
        "question": "What is ReAct?",
        "messages": [],
        "answer": ""
    })
-   
+
    print(result["answer"])
    ```
 
@@ -178,7 +179,7 @@ By the end of this week, you will:
    ```powershell
    # Using uv (recommended)
    uv add "openai[agents]"
-   
+
    # Or if already in pyproject.toml, just sync
    uv sync
    ```
@@ -188,10 +189,10 @@ By the end of this week, you will:
    # OpenAI Agent SDK
    from openai import OpenAI
    from openai.agents import Agent, AgentExecutor
-   
+
    # Initialize client
    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-   
+
    # Define tools
    def calculator(expression: str) -> str:
        """Calculate mathematical expressions"""
@@ -200,7 +201,7 @@ By the end of this week, you will:
            return str(result)
        except:
            return "Error: Invalid expression"
-   
+
    # Create agent
    agent = Agent(
        name="math_assistant",
@@ -209,7 +210,7 @@ By the end of this week, you will:
        tools=[calculator],
        client=client
    )
-   
+
    # Execute agent
    executor = AgentExecutor(agent)
    result = executor.run("What is 15 * 23?")
@@ -233,7 +234,7 @@ By the end of this week, you will:
    ```powershell
    # Using uv (recommended)
    uv add azure-ai-agents
-   
+
    # Or if already in pyproject.toml, just sync
    uv sync
    ```
@@ -243,14 +244,14 @@ By the end of this week, you will:
    # Azure Agent SDK
    from azure.ai.agents import Agent, AgentExecutor
    from azure.ai.agents.models import AzureOpenAIConnection
-   
+
    # Create Azure OpenAI connection
    connection = AzureOpenAIConnection(
        endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
        api_key=os.getenv("AZURE_OPENAI_API_KEY"),
        api_version="2024-02-15-preview"
    )
-   
+
    # Define tools (same as OpenAI)
    def calculator(expression: str) -> str:
        """Calculate mathematical expressions"""
@@ -259,7 +260,7 @@ By the end of this week, you will:
            return str(result)
        except:
            return "Error: Invalid expression"
-   
+
    # Create agent with Azure
    agent = Agent(
        name="azure_math_assistant",
@@ -268,7 +269,7 @@ By the end of this week, you will:
        tools=[calculator],
        connection=connection
    )
-   
+
    # Execute agent
    executor = AgentExecutor(agent)
    result = executor.run("What is 15 * 23?")
@@ -289,25 +290,25 @@ By the end of this week, you will:
 **Tasks (30 min):**
 
 1. **Framework Comparison** (20 min)
-   
+
    **LangChain:**
    - ✅ Best for: Complex chains, RAG, multi-step workflows
    - ✅ Strengths: Extensive tooling, community, integrations
    - ❌ Weaknesses: Can be verbose, learning curve
    - 🎯 Use when: Building RAG systems, complex pipelines
-   
+
    **LangGraph:**
    - ✅ Best for: Stateful workflows, complex agent logic
    - ✅ Strengths: Visual workflows, state management
    - ❌ Weaknesses: Newer, less documentation
    - 🎯 Use when: Complex multi-step agents, stateful processes
-   
+
    **OpenAI Agent SDK:**
    - ✅ Best for: Simple agents, OpenAI-only projects
    - ✅ Strengths: Native, simple, well-supported
    - ❌ Weaknesses: OpenAI-specific, less flexible
    - 🎯 Use when: Quick prototypes, OpenAI-focused apps
-   
+
    **Azure Agent SDK:**
    - ✅ Best for: Azure ecosystem, enterprise deployments
    - ✅ Strengths: Azure integration, enterprise features
@@ -343,9 +344,10 @@ By the end of this week, you will:
 
 ---
 
-## 🎓 Congratulations on Completing 25 Weeks!
+## 🎓 Congratulations on Completing 25 Weeks
 
 You've achieved comprehensive mastery in LLM Engineering across:
+
 - ✅ **25 Weeks** of progressive learning
 - ✅ **OpenAI & Azure OpenAI** expertise
 - ✅ **Multi-Language** proficiency (Python, Go, Node.js, Angular, React, Next.js, .NET)
@@ -360,7 +362,7 @@ You've achieved comprehensive mastery in LLM Engineering across:
 
 ---
 
-## 🔄 Mastery Achieved!
+## 🔄 Mastery Achieved
 
 **Complete Learning Path:**
 - Weeks 1-5: Foundations (CoT, ReAct)
@@ -370,4 +372,3 @@ You've achieved comprehensive mastery in LLM Engineering across:
 - Weeks 21-25: Multi-Platform Mastery (Azure, Multi-language, Frameworks)
 
 **Keep learning, building, and sharing! 🚀**
-

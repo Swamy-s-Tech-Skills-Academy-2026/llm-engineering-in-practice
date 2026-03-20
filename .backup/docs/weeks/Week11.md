@@ -10,6 +10,7 @@
 ## 🎯 Week 11 Learning Objectives
 
 By the end of this week, you will:
+
 - [ ] Build a complete capstone project
 - [ ] Integrate RAG, tools, and evaluation
 - [ ] Combine all learned concepts
@@ -150,4 +151,3 @@ By the end of this week, you will:
 - Advanced experiments
 - Lessons learned
 - Next steps
-

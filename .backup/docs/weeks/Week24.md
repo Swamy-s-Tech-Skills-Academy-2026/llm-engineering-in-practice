@@ -10,6 +10,7 @@
 ## 🎯 Week 24 Learning Objectives
 
 By the end of this week, you will:
+
 - [ ] Build .NET Aspire orchestrated applications
 - [ ] Create .NET Web API backends for LLM integration
 - [ ] Develop Blazor frontends with LLM features
@@ -41,27 +42,27 @@ By the end of this week, you will:
    public interface ILLMService
    {
        Task<string> GetChatCompletionAsync(
-           List<ChatMessage> messages, 
-           string model, 
+           List<ChatMessage> messages,
+           string model,
            CancellationToken cancellationToken = default);
    }
-   
+
    // Services/OpenAIService.cs
    public class OpenAIService : ILLMService
    {
        private readonly OpenAI.OpenAIClient _client;
        private readonly ILogger<OpenAIService> _logger;
-       
+
        public OpenAIService(IConfiguration configuration, ILogger<OpenAIService> logger)
        {
            var apiKey = configuration["OpenAI:ApiKey"];
            _client = new OpenAI.OpenAIClient(apiKey);
            _logger = logger;
        }
-       
+
        public async Task<string> GetChatCompletionAsync(
-           List<ChatMessage> messages, 
-           string model, 
+           List<ChatMessage> messages,
+           string model,
            CancellationToken cancellationToken = default)
        {
            var request = new ChatCompletionRequest
@@ -74,22 +75,22 @@ By the end of this week, you will:
                Model = model,
                Temperature = 0.7f
            };
-           
+
            var response = await _client.GetChatCompletionsAsync(
-               model, 
-               request, 
+               model,
+               request,
                cancellationToken);
-           
+
            return response.Value.Choices[0].Message.Content;
        }
    }
-   
+
    // Services/AzureOpenAIService.cs
    public class AzureOpenAIService : ILLMService
    {
        private readonly AzureOpenAIClient _client;
        private readonly ILogger<AzureOpenAIService> _logger;
-       
+
        public AzureOpenAIService(IConfiguration configuration, ILogger<AzureOpenAIService> logger)
        {
            var endpoint = configuration["AzureOpenAI:Endpoint"];
@@ -98,10 +99,10 @@ By the end of this week, you will:
            _client = new AzureOpenAIClient(new Uri(endpoint), credential);
            _logger = logger;
        }
-       
+
        public async Task<string> GetChatCompletionAsync(
-           List<ChatMessage> messages, 
-           string deploymentName, 
+           List<ChatMessage> messages,
+           string deploymentName,
            CancellationToken cancellationToken = default)
        {
            var chatCompletionsOptions = new ChatCompletionsOptions
@@ -110,36 +111,36 @@ By the end of this week, you will:
                Messages = messages.Select(m => new ChatRequestUserMessage(m.Content)).ToList(),
                Temperature = 0.7f
            };
-           
+
            var response = await _client.GetChatCompletionsAsync(
-               chatCompletionsOptions, 
+               chatCompletionsOptions,
                cancellationToken);
-           
+
            return response.Value.Choices[0].Message.Content;
        }
    }
-   
+
    // Controllers/ChatController.cs
    [ApiController]
    [Route("api/[controller]")]
    public class ChatController : ControllerBase
    {
        private readonly ILLMService _llmService;
-       
+
        public ChatController(ILLMService llmService)
        {
            _llmService = llmService;
        }
-       
+
        [HttpPost]
        public async Task<IActionResult> Chat([FromBody] ChatRequest request)
        {
            try
            {
                var response = await _llmService.GetChatCompletionAsync(
-                   request.Messages, 
+                   request.Messages,
                    request.Model);
-               
+
                return Ok(new { content = response });
            }
            catch (Exception ex)
@@ -148,10 +149,10 @@ By the end of this week, you will:
            }
        }
    }
-   
+
    // Program.cs - Dependency Injection
    var builder = WebApplication.CreateBuilder(args);
-   
+
    // Register LLM service based on configuration
    var provider = builder.Configuration["LLM:Provider"];
    if (provider == "openai")
@@ -162,7 +163,7 @@ By the end of this week, you will:
    {
        builder.Services.AddScoped<ILLMService, AzureOpenAIService>();
    }
-   
+
    var app = builder.Build();
    app.MapControllers();
    app.Run();
@@ -191,22 +192,22 @@ By the end of this week, you will:
    ```csharp
    // AppHost/Program.cs
    var builder = DistributedApplication.CreateBuilder(args);
-   
+
    // Add API project
    var apiService = builder.AddProject<Projects.LLM_Api>("llm-api")
        .WithReference(redis)
        .WithEnvironment("LLM__Provider", "azure_openai");
-   
+
    // Add Blazor frontend
    var blazorApp = builder.AddProject<Projects.LLM_Blazor>("llm-blazor")
        .WithReference(apiService);
-   
+
    // Add Redis for caching
    var redis = builder.AddRedis("redis");
-   
+
    // Add Azure OpenAI connection
    var azureOpenAI = builder.AddConnectionString("AzureOpenAI");
-   
+
    builder.Build().Run();
    ```
 
@@ -235,11 +236,11 @@ By the end of this week, you will:
    @page "/chat"
    @inject ILLMApiService LLMService
    @inject ILogger<Chat> Logger
-   
+
    <PageTitle>LLM Chat</PageTitle>
-   
+
    <h3>Chat with LLM</h3>
-   
+
    <div class="chat-container">
        <div class="messages">
            @foreach (var message in messages)
@@ -249,14 +250,14 @@ By the end of this week, you will:
                </div>
            }
        </div>
-       
+
        @if (loading)
        {
            <div class="loading">Loading...</div>
        }
-       
+
        <div class="input-area">
-           <input @bind="userInput" @bind:event="oninput" 
+           <input @bind="userInput" @bind:event="oninput"
                   placeholder="Type your message..." />
            <button @onclick="SendMessage" disabled="@loading">Send</button>
            <select @bind="selectedProvider">
@@ -265,33 +266,33 @@ By the end of this week, you will:
            </select>
        </div>
    </div>
-   
+
    @code {
        private List<ChatMessage> messages = new();
        private string userInput = string.Empty;
        private bool loading = false;
        private string selectedProvider = "azure_openai";
-       
+
        private async Task SendMessage()
        {
            if (string.IsNullOrWhiteSpace(userInput)) return;
-           
+
            messages.Add(new ChatMessage { Role = "user", Content = userInput });
            var userMessage = userInput;
            userInput = string.Empty;
            loading = true;
-           
+
            try
            {
                var response = await LLMService.GetChatCompletionAsync(
-                   messages, 
-                   "gpt-4", 
+                   messages,
+                   "gpt-4",
                    selectedProvider);
-               
-               messages.Add(new ChatMessage 
-               { 
-                   Role = "assistant", 
-                   Content = response 
+
+               messages.Add(new ChatMessage
+               {
+                   Role = "assistant",
+                   Content = response
                });
            }
            catch (Exception ex)
@@ -305,29 +306,29 @@ By the end of this week, you will:
            }
        }
    }
-   
+
    // Services/ILLMApiService.cs
    public interface ILLMApiService
    {
        Task<string> GetChatCompletionAsync(
-           List<ChatMessage> messages, 
-           string model, 
+           List<ChatMessage> messages,
+           string model,
            string provider);
    }
-   
+
    // Services/LLMApiService.cs
    public class LLMApiService : ILLMApiService
    {
        private readonly HttpClient _httpClient;
-       
+
        public LLMApiService(HttpClient httpClient)
        {
            _httpClient = httpClient;
        }
-       
+
        public async Task<string> GetChatCompletionAsync(
-           List<ChatMessage> messages, 
-           string model, 
+           List<ChatMessage> messages,
+           string model,
            string provider)
        {
            var request = new
@@ -336,10 +337,10 @@ By the end of this week, you will:
                model = model,
                provider = provider
            };
-           
+
            var response = await _httpClient.PostAsJsonAsync("/api/chat", request);
            response.EnsureSuccessStatusCode();
-           
+
            var result = await response.Content.ReadFromJsonAsync<ChatResponse>();
            return result.Content;
        }
@@ -401,4 +402,3 @@ By the end of this week, you will:
 - OpenAI Agent SDK
 - Azure Agent SDK
 - Framework comparison and selection
-

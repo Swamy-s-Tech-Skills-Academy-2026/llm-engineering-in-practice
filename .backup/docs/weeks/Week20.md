@@ -10,6 +10,7 @@
 ## 🎯 Week 20 Learning Objectives
 
 By the end of this week, you will:
+
 - [ ] Achieve mastery of LLM Engineering
 - [ ] Review all advanced concepts
 - [ ] Create advanced portfolio
@@ -123,24 +124,30 @@ By the end of this week, you will:
 1. **Final Retrospective** (20 min)
    ```markdown
    # 20-Week Mastery Retrospective
-   
+
    ## Journey
-   - 
-   
+
+   -
+
    ## Achievements
-   - 
-   
+
+   -
+
    ## Skills Mastered
-   - 
-   
+
+   -
+
    ## Projects Built
-   - 
-   
+
+   -
+
    ## Impact
-   - 
-   
+
+   -
+
    ## Future Vision
-   - 
+
+   -
    ```
 
 2. **Celebration** (10 min)
@@ -155,7 +162,7 @@ By the end of this week, you will:
 
 ---
 
-## 🎓 Congratulations on Completing 20 Weeks!
+## 🎓 Congratulations on Completing 20 Weeks
 
 You've achieved mastery in LLM Engineering! You now have:
 
@@ -232,4 +239,3 @@ You've achieved mastery in LLM Engineering! You now have:
 ---
 
 **You've completed an incredible journey. Now go build amazing things! 🚀**
-

@@ -10,6 +10,7 @@
 ## 🎯 Week 4 Learning Objectives
 
 By the end of this week, you will:
+
 - [ ] Understand web scraping basics
 - [ ] Build a web scraper for text extraction
 - [ ] Integrate scraping with LLM summarization
@@ -31,38 +32,38 @@ By the end of this week, you will:
    ```powershell
    # Using uv (recommended)
    uv add beautifulsoup4 requests lxml
-   
+
    # Or if already in pyproject.toml, just sync
    uv sync
    ```
 
 2. **Basic Web Scraping** (15 min)
-   
+
    Create `scripts/scraper_basic.py`:
    ```python
    import requests
    from bs4 import BeautifulSoup
-   
+
    def scrape_url(url: str) -> str:
        """Scrape text content from a URL"""
        try:
            response = requests.get(url, timeout=10)
            response.raise_for_status()
-           
+
            soup = BeautifulSoup(response.content, 'html.parser')
-           
+
            # Remove script and style elements
            for script in soup(["script", "style"]):
                script.decompose()
-           
+
            # Get text
            text = soup.get_text()
-           
+
            # Clean up whitespace
            lines = (line.strip() for line in text.splitlines())
            chunks = (phrase.strip() for line in lines for phrase in line.split("  "))
            text = ' '.join(chunk for chunk in chunks if chunk)
-           
+
            return text
        except Exception as e:
            print(f"Error scraping {url}: {e}")
@@ -102,12 +103,12 @@ By the end of this week, you will:
            'main',
            '.content'
        ]
-       
+
        for selector in selectors:
            content = soup.select_one(selector)
            if content:
                return content.get_text()
-       
+
        # Fallback to body
        return soup.body.get_text() if soup.body else ""
    ```
@@ -131,50 +132,50 @@ By the end of this week, you will:
 **Tasks (30 min):**
 
 1. **Create Summarizer Bot** (20 min)
-   
+
    Create `scripts/summarizer_bot.py`:
    ```python
    from scripts.scraper_basic import scrape_url
    from scripts.api_client import get_openai_client
    from scripts.chunking import chunk_by_tokens
-   
+
    def summarize_url(url: str, max_length: int = 200) -> dict:
        """Scrape URL and summarize with LLM"""
-       
+
        # Scrape content
        print(f"Scraping {url}...")
        content = scrape_url(url)
-       
+
        if not content:
            return {"error": "Failed to scrape URL"}
-       
+
        # Chunk if too long
        chunks = chunk_by_tokens(content, max_tokens=3000)
-       
+
        # Summarize each chunk
        summaries = []
        client = get_openai_client()
-       
+
        for i, chunk in enumerate(chunks):
            prompt = f"""
            Summarize the following content in {max_length} words or less:
-           
+
            {chunk}
-           
+
            Summary:
            """
-           
+
            response = client.chat.completions.create(
                model="gpt-3.5-turbo",
                messages=[{"role": "user", "content": prompt}],
                max_tokens=300
            )
-           
+
            summaries.append(response.choices[0].message.content)
-       
+
        # Combine summaries
        final_summary = " ".join(summaries)
-       
+
        return {
            "url": url,
            "original_length": len(content),
@@ -211,18 +212,18 @@ By the end of this week, you will:
    import hashlib
    import json
    from pathlib import Path
-   
+
    def get_cache_key(url: str) -> str:
        """Generate cache key from URL"""
        return hashlib.md5(url.encode()).hexdigest()
-   
+
    def load_from_cache(url: str) -> dict:
        """Load summary from cache if exists"""
        cache_file = Path(f"cache/{get_cache_key(url)}.json")
        if cache_file.exists():
            return json.load(cache_file.open())
        return None
-   
+
    def save_to_cache(url: str, summary: dict):
        """Save summary to cache"""
        Path("cache").mkdir(exist_ok=True)
@@ -233,17 +234,17 @@ By the end of this week, you will:
 3. **Create CLI Interface** (10 min)
    ```python
    import argparse
-   
+
    def main():
        parser = argparse.ArgumentParser(description="URL Summarizer Bot")
        parser.add_argument("url", help="URL to summarize")
        parser.add_argument("--max-length", type=int, default=200)
-       
+
        args = parser.parse_args()
-       
+
        result = summarize_url(args.url, args.max_length)
        print(json.dumps(result, indent=2))
-   
+
    if __name__ == "__main__":
        main()
    ```
@@ -282,4 +283,3 @@ By the end of this week, you will:
 - ReAct (Reasoning + Acting) pattern
 - Building agent loops
 - Tool integration
-

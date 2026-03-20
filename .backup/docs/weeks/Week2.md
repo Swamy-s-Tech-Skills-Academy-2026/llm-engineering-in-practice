@@ -10,6 +10,7 @@
 ## 🎯 Week 2 Learning Objectives
 
 By the end of this week, you will:
+
 - [ ] Master Python data structures for LLM engineering
 - [ ] Read and process different file formats (CSV, JSON, TXT)
 - [ ] Clean and preprocess text data
@@ -32,14 +33,14 @@ By the end of this week, you will:
    ```python
    # Lists - for batches, chunks
    texts = ["text1", "text2", "text3"]
-   
+
    # Dictionaries - for API responses, configs
    config = {
        "model": "gpt-3.5-turbo",
        "temperature": 0.7,
        "max_tokens": 100
    }
-   
+
    # List of dictionaries - for structured data
    messages = [
        {"role": "user", "content": "Hello"},
@@ -48,20 +49,20 @@ By the end of this week, you will:
    ```
 
 2. **JSON Handling** (10 min)
-   
+
    Create `scripts/json_practice.py`:
    ```python
    import json
-   
+
    # Read JSON
    with open('data/raw/sample.json', 'r') as f:
        data = json.load(f)
-   
+
    # Write JSON
    output = {"result": "success", "tokens": 100}
    with open('data/processed/output.json', 'w') as f:
        json.dump(output, f, indent=2)
-   
+
    # Parse JSON strings
    json_str = '{"key": "value"}'
    data = json.loads(json_str)
@@ -72,7 +73,7 @@ By the end of this week, you will:
    # Reading text files
    with open('data/raw/text.txt', 'r', encoding='utf-8') as f:
        content = f.read()
-   
+
    # Reading line by line (for large files)
    with open('data/raw/large.txt', 'r', encoding='utf-8') as f:
        for line in f:
@@ -97,12 +98,12 @@ By the end of this week, you will:
 **Tasks (30 min):**
 
 1. **CSV Reading** (15 min)
-   
+
    Create `scripts/csv_processor.py`:
    ```python
    import csv
    from typing import List, Dict
-   
+
    def read_csv(filepath: str) -> List[Dict]:
        """Read CSV file and return list of dictionaries"""
        data = []
@@ -111,11 +112,11 @@ By the end of this week, you will:
            for row in reader:
                data.append(row)
        return data
-   
+
    def extract_text_column(data: List[Dict], column: str) -> List[str]:
        """Extract specific column as list of strings"""
        return [row[column] for row in data if column in row]
-   
+
    # Example usage
    if __name__ == "__main__":
        data = read_csv('data/raw/reviews.csv')
@@ -132,7 +133,7 @@ By the end of this week, you will:
        # Remove special characters (optional)
        # text = re.sub(r'[^\w\s]', '', text)
        return text.strip()
-   
+
    def remove_empty(data: List[str]) -> List[str]:
        """Remove empty strings"""
        return [item for item in data if item.strip()]
@@ -162,7 +163,7 @@ By the end of this week, you will:
        chunks = []
        current_chunk = []
        current_size = 0
-       
+
        for sentence in sentences:
            sentence_size = len(sentence)
            if current_size + sentence_size > chunk_size:
@@ -172,47 +173,47 @@ By the end of this week, you will:
            else:
                current_chunk.append(sentence)
                current_size += sentence_size
-       
+
        if current_chunk:
            chunks.append('. '.join(current_chunk))
        return chunks
    ```
 
 2. **Token-Aware Chunking** (15 min)
-   
+
    Create `scripts/chunking.py`:
    ```python
    import tiktoken
-   
-   def chunk_by_tokens(text: str, max_tokens: int = 1000, 
+
+   def chunk_by_tokens(text: str, max_tokens: int = 1000,
                        model: str = "gpt-3.5-turbo") -> List[str]:
        """Split text into chunks with token limits"""
        encoding = tiktoken.encoding_for_model(model)
        tokens = encoding.encode(text)
-       
+
        chunks = []
        for i in range(0, len(tokens), max_tokens):
            chunk_tokens = tokens[i:i + max_tokens]
            chunk_text = encoding.decode(chunk_tokens)
            chunks.append(chunk_text)
-       
+
        return chunks
    ```
 
 3. **Overlap Strategy** (5 min)
    ```python
-   def chunk_with_overlap(text: str, chunk_size: int = 1000, 
+   def chunk_with_overlap(text: str, chunk_size: int = 1000,
                          overlap: int = 100) -> List[str]:
        """Chunk text with overlapping windows"""
        chunks = []
        start = 0
-       
+
        while start < len(text):
            end = start + chunk_size
            chunk = text[start:end]
            chunks.append(chunk)
            start = end - overlap  # Overlap
-       
+
        return chunks
    ```
 
@@ -232,7 +233,7 @@ By the end of this week, you will:
 **Tasks (30 min):**
 
 1. **Create Main Ingestion Script** (25 min)
-   
+
    Create `scripts/ingest.py`:
    ```python
    import os
@@ -242,14 +243,14 @@ By the end of this week, you will:
    from typing import List, Dict
    from scripts.chunking import chunk_by_tokens
    from scripts.data_utils import clean_text
-   
+
    def ingest_file(filepath: str, output_dir: str = "data/processed"):
        """Ingest a file and prepare it for LLM processing"""
        Path(output_dir).mkdir(parents=True, exist_ok=True)
-       
+
        # Determine file type
        ext = Path(filepath).suffix.lower()
-       
+
        if ext == '.json':
            with open(filepath, 'r', encoding='utf-8') as f:
                data = json.load(f)
@@ -261,13 +262,13 @@ By the end of this week, you will:
                texts = [f.read()]
        else:
            raise ValueError(f"Unsupported file type: {ext}")
-       
+
        # Clean and chunk
        cleaned = [clean_text(text) for text in texts]
        chunks = []
        for text in cleaned:
            chunks.extend(chunk_by_tokens(text, max_tokens=1000))
-       
+
        # Save processed data
        output_file = Path(output_dir) / f"{Path(filepath).stem}_processed.json"
        with open(output_file, 'w') as f:
@@ -276,10 +277,10 @@ By the end of this week, you will:
                "num_chunks": len(chunks),
                "chunks": chunks
            }, f, indent=2)
-       
+
        print(f"✅ Processed {len(chunks)} chunks from {filepath}")
        return chunks
-   
+
    def extract_texts_from_json(data):
        """Extract text fields from JSON"""
        # Handle different JSON structures
@@ -288,7 +289,7 @@ By the end of this week, you will:
        elif isinstance(data, dict):
            return [data.get('text', str(data))]
        return []
-   
+
    def extract_texts_from_csv(filepath: str, text_column: str = 'text'):
        """Extract text column from CSV"""
        import csv
@@ -299,7 +300,7 @@ By the end of this week, you will:
                if text_column in row:
                    texts.append(row[text_column])
        return texts
-   
+
    if __name__ == "__main__":
        # Example usage
        ingest_file("data/raw/sample.txt")
@@ -336,19 +337,22 @@ By the end of this week, you will:
    - Fix any errors
 
 3. **Week 2 Reflection** (10 min)
-   
+
    Create `docs/week02_reflection.md`:
    ```markdown
    # Week 2 Reflection
-   
+
    ## What I Learned
-   - 
-   
+
+   -
+
    ## Challenges
-   - 
-   
+
+   -
+
    ## Key Takeaways
-   - 
+
+   -
    ```
 
 **Week 2 Deliverables:**
@@ -394,6 +398,7 @@ By the end of this week, you will:
 ### Practice Exercise
 
 Compare chunking methods:
+
 ```python
 text = "Your long text here..."  # 5000 words
 
@@ -405,6 +410,7 @@ chunks_token = chunk_by_tokens(text, 1000)
 print(f"Fixed: {len(chunks_fixed)} chunks")
 print(f"Sentence: {len(chunks_sentence)} chunks")
 print(f"Token: {len(chunks_token)} chunks")
+
 ```
 
 ---
@@ -425,4 +431,3 @@ print(f"Token: {len(chunks_token)} chunks")
 - Chain-of-Thought (CoT) deep dive
 - Prompt patterns and templates
 - Evaluation and A/B testing
-

@@ -10,6 +10,7 @@
 ## 🎯 Week 17 Learning Objectives
 
 By the end of this week, you will:
+
 - [ ] Build comprehensive evaluation frameworks
 - [ ] Create custom metrics
 - [ ] Implement A/B testing
@@ -38,7 +39,7 @@ By the end of this week, you will:
    class EvaluationFramework:
        def __init__(self):
            self.metrics = {}
-       
+
        def evaluate(self, predictions, ground_truth):
            """Run all evaluations"""
            results = {}
@@ -98,13 +99,13 @@ By the end of this week, you will:
        """Compare two prompts"""
        results_a = []
        results_b = []
-       
+
        for case in test_cases:
            result_a = test_prompt(prompt_a, case)
            result_b = test_prompt(prompt_b, case)
            results_a.append(result_a)
            results_b.append(result_b)
-       
+
        return compare_results(results_a, results_b)
    ```
 
@@ -159,4 +160,3 @@ By the end of this week, you will:
 - Custom use cases
 - Industry applications
 - Specialized patterns
-

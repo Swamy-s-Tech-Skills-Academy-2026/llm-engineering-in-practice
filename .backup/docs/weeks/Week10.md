@@ -10,6 +10,7 @@
 ## 🎯 Week 10 Learning Objectives
 
 By the end of this week, you will:
+
 - [ ] Deploy LLM applications locally
 - [ ] Deploy to cloud platforms
 - [ ] Handle scaling challenges
@@ -35,7 +36,7 @@ By the end of this week, you will:
    RUN uv sync --frozen
    COPY . .
    CMD ["uv", "run", "python", "app.py"]
-   
+
    # Option B: Traditional pip (if needed)
    # FROM python:3.11
    # WORKDIR /app
@@ -152,4 +153,3 @@ By the end of this week, you will:
 - Integrated RAG + tools + eval
 - Complete capstone project
 - All concepts combined
-

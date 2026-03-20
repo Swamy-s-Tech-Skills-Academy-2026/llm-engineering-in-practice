@@ -10,6 +10,7 @@
 ## 🎯 Week 21 Learning Objectives
 
 By the end of this week, you will:
+
 - [ ] Master Azure OpenAI setup and configuration
 - [ ] Understand differences between OpenAI and Azure OpenAI
 - [ ] Build multi-provider abstraction layer
@@ -34,12 +35,12 @@ By the end of this week, you will:
    - Understand deployment names
 
 2. **Compare OpenAI vs Azure OpenAI** (15 min)
-   
+
    **OpenAI:**
    - Direct API access
    - Model names: `gpt-4`, `gpt-3.5-turbo`
    - Simple endpoint: `https://api.openai.com/v1/chat/completions`
-   
+
    **Azure OpenAI:**
    - Azure resource-based
    - Deployment names (custom)
@@ -69,15 +70,15 @@ By the end of this week, you will:
    from openai import AzureOpenAI
    import os
    from dotenv import load_dotenv
-   
+
    load_dotenv()
-   
+
    client = AzureOpenAI(
        api_key=os.getenv("AZURE_OPENAI_API_KEY"),
        api_version="2024-02-15-preview",
        azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT")
    )
-   
+
    response = client.chat.completions.create(
        model="gpt-4",  # Deployment name
        messages=[
@@ -85,7 +86,7 @@ By the end of this week, you will:
            {"role": "user", "content": "Hello from Azure OpenAI!"}
        ]
    )
-   
+
    print(response.choices[0].message.content)
    ```
 
@@ -94,13 +95,13 @@ By the end of this week, you will:
    // Azure OpenAI with Node.js
    const { AzureOpenAI } = require('openai');
    require('dotenv').config();
-   
+
    const client = new AzureOpenAI({
        apiKey: process.env.AZURE_OPENAI_API_KEY,
        endpoint: process.env.AZURE_OPENAI_ENDPOINT,
        apiVersion: '2024-02-15-preview'
    });
-   
+
    async function callAzureOpenAI() {
        const response = await client.chat.completions.create({
            model: 'gpt-4', // Deployment name
@@ -109,10 +110,10 @@ By the end of this week, you will:
                { role: 'user', content: 'Hello from Azure OpenAI!' }
            ]
        });
-       
+
        console.log(response.choices[0].message.content);
    }
-   
+
    callAzureOpenAI();
    ```
 
@@ -120,25 +121,25 @@ By the end of this week, you will:
    ```go
    // Azure OpenAI with Go
    package main
-   
+
    import (
        "context"
        "fmt"
        "os"
-       
+
        "github.com/azure/openai-assistant-go"
        "github.com/joho/godotenv"
    )
-   
+
    func main() {
        godotenv.Load()
-       
+
        client := assistant.NewClient(
            os.Getenv("AZURE_OPENAI_ENDPOINT"),
            os.Getenv("AZURE_OPENAI_API_KEY"),
            "2024-02-15-preview",
        )
-       
+
        ctx := context.Background()
        response, err := client.CreateChatCompletion(ctx, assistant.ChatCompletionRequest{
            Model: "gpt-4", // Deployment name
@@ -147,11 +148,11 @@ By the end of this week, you will:
                {Role: "user", Content: "Hello from Azure OpenAI!"},
            },
        })
-       
+
        if err != nil {
            panic(err)
        }
-       
+
        fmt.Println(response.Choices[0].Message.Content)
    }
    ```
@@ -175,18 +176,18 @@ By the end of this week, you will:
    # Abstract LLM provider interface
    from abc import ABC, abstractmethod
    from typing import List, Dict
-   
+
    class LLMProvider(ABC):
        @abstractmethod
        def chat_completion(
-           self, 
-           messages: List[Dict[str, str]], 
+           self,
+           messages: List[Dict[str, str]],
            model: str,
            temperature: float = 0.7
        ) -> str:
            """Generate chat completion"""
            pass
-       
+
        @abstractmethod
        def get_usage_stats(self) -> Dict:
            """Get token usage statistics"""
@@ -200,7 +201,7 @@ By the end of this week, you will:
        def __init__(self, api_key: str):
            from openai import OpenAI
            self.client = OpenAI(api_key=api_key)
-       
+
        def chat_completion(self, messages, model, temperature=0.7):
            response = self.client.chat.completions.create(
                model=model,
@@ -208,7 +209,7 @@ By the end of this week, you will:
                temperature=temperature
            )
            return response.choices[0].message.content
-   
+
    # Azure OpenAI Provider
    class AzureOpenAIProvider(LLMProvider):
        def __init__(self, endpoint: str, api_key: str, api_version: str):
@@ -218,7 +219,7 @@ By the end of this week, you will:
                endpoint=endpoint,
                api_version=api_version
            )
-       
+
        def chat_completion(self, messages, model, temperature=0.7):
            response = self.client.chat.completions.create(
                model=model,  # Deployment name in Azure
@@ -226,7 +227,7 @@ By the end of this week, you will:
                temperature=temperature
            )
            return response.choices[0].message.content
-   
+
    # Provider Factory
    class LLMProviderFactory:
        @staticmethod
@@ -262,15 +263,15 @@ By the end of this week, you will:
        def __init__(self):
            self.providers = {}
            self.current_provider = None
-       
+
        def register_provider(self, name: str, provider: LLMProvider):
            self.providers[name] = provider
-       
+
        def switch_provider(self, name: str):
            if name not in self.providers:
                raise ValueError(f"Provider {name} not registered")
            self.current_provider = self.providers[name]
-       
+
        def call(self, messages, model, temperature=0.7):
            if not self.current_provider:
                raise ValueError("No provider selected")
@@ -284,23 +285,23 @@ By the end of this week, you will:
    def compare_providers(test_cases, providers):
        """Compare multiple providers on same test cases"""
        results = {}
-       
+
        for provider_name, provider in providers.items():
            results[provider_name] = {
                'latency': [],
                'cost': [],
                'quality': []
            }
-           
+
            for case in test_cases:
                start = time.time()
                response = provider.chat_completion(case['messages'])
                latency = time.time() - start
-               
+
                results[provider_name]['latency'].append(latency)
                # Add cost calculation
                # Add quality scoring
-       
+
        return results
    ```
 

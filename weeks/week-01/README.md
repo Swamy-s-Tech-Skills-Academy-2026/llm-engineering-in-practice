@@ -38,10 +38,10 @@ By the end of this week, you will:
    ```powershell
    # Windows (PowerShell)
    powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-   
+
    # macOS/Linux
    curl -LsSf https://astral.sh/uv/install.sh | sh
-   
+
    # Alternative (via pip)
    pip install uv
    ```
@@ -51,7 +51,7 @@ By the end of this week, you will:
    ```powershell
    # Sync environment (creates .venv and installs all dependencies from pyproject.toml)
    uv sync
-   
+
    # This automatically:
    # - Creates a virtual environment (.venv)
    # - Installs all dependencies from pyproject.toml
@@ -84,7 +84,7 @@ By the end of this week, you will:
    ```powershell
    # Check Python version
    uv run python --version
-   
+
    # Verify packages are installed
    uv run python -c "import openai; print('OpenAI installed')"
    uv run python -c "import anthropic; print('Anthropic installed')"
@@ -128,13 +128,13 @@ By the end of this week, you will:
    ```env
    # OpenAI
    OPENAI_API_KEY=sk-your-key-here
-   
+
    # Azure OpenAI
    AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com
    AZURE_OPENAI_API_KEY=your-azure-key-here
    AZURE_OPENAI_API_VERSION=2024-02-15-preview
    AZURE_OPENAI_DEPLOYMENT_NAME=gpt-4
-   
+
    # Other providers (optional)
    ANTHROPIC_API_KEY=sk-ant-your-key-here
    ```
@@ -148,32 +148,32 @@ By the end of this week, you will:
    from dotenv import load_dotenv
    from openai import OpenAI
    from openai import AzureOpenAI
-   
+
    # Load environment variables
    load_dotenv()
-   
+
    def get_openai_client():
        """Initialize and return OpenAI client"""
        api_key = os.getenv("OPENAI_API_KEY")
        if not api_key:
            raise ValueError("OPENAI_API_KEY not found in .env file")
        return OpenAI(api_key=api_key)
-   
+
    def get_azure_openai_client():
        """Initialize and return Azure OpenAI client"""
        endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
        api_key = os.getenv("AZURE_OPENAI_API_KEY")
        api_version = os.getenv("AZURE_OPENAI_API_VERSION", "2024-02-15-preview")
-       
+
        if not endpoint or not api_key:
            raise ValueError("Azure OpenAI credentials not found in .env file")
-       
+
        return AzureOpenAI(
            api_key=api_key,
            azure_endpoint=endpoint,
            api_version=api_version
        )
-   
+
    def test_api_connection(provider="openai"):
        """Test if API connection works"""
        try:
@@ -194,19 +194,19 @@ By the end of this week, you will:
                )
            else:
                raise ValueError(f"Unknown provider: {provider}")
-           
+
            print(f"✅ {provider.upper()} API connection successful!")
            print(f"Response: {response.choices[0].message.content}")
            return True
        except Exception as e:
            print(f"❌ {provider.upper()} API connection failed: {e}")
            return False
-   
+
    if __name__ == "__main__":
        # Test both providers
        print("Testing OpenAI...")
        test_api_connection("openai")
-       
+
        print("\nTesting Azure OpenAI...")
        test_api_connection("azure_openai")
    ```
@@ -246,10 +246,10 @@ By the end of this week, you will:
    import sys
    sys.path.append('..')
    from scripts.api_client import get_openai_client
-   
+
    def main():
        client = get_openai_client()
-       
+
        # Your first LLM call!
        response = client.chat.completions.create(
            model="gpt-3.5-turbo",
@@ -260,7 +260,7 @@ By the end of this week, you will:
            temperature=0.7,
            max_tokens=100
        )
-       
+
        # Print the response
        print("Question: What is LLM Engineering?")
        print(f"Answer: {response.choices[0].message.content}")
@@ -268,7 +268,7 @@ By the end of this week, you will:
        print(f"  Input tokens: {response.usage.prompt_tokens}")
        print(f"  Output tokens: {response.usage.completion_tokens}")
        print(f"  Total tokens: {response.usage.total_tokens}")
-   
+
    if __name__ == "__main__":
        main()
    ```
@@ -317,11 +317,12 @@ By the end of this week, you will:
 **Tasks (30 min):**
 
 1. **Run the diagnostics** (25 min)
-   
+
    Use the existing setup in `notebooks/01-setup/`:
+
    - **From repo root:** `uv run python notebooks/01-setup/run_diagnostics.py`
    - **Or open in Jupyter:** `notebooks/01-setup/02_diagnostics.ipynb`
-   
+
    If you prefer to build your own from scratch, create `notebooks/00_diagnostics.ipynb` with these cells:
 
    **Cell 1: Import and Setup**
@@ -333,7 +334,7 @@ By the end of this week, you will:
    from dotenv import load_dotenv
    from openai import OpenAI
    from scripts.api_client import get_openai_client
-   
+
    load_dotenv()
    print("✅ Environment loaded")
    ```
@@ -352,12 +353,12 @@ By the end of this week, you will:
 
    ```python
    from tiktoken import get_encoding
-   
+
    encoding = get_encoding("cl100k_base")  # GPT-3.5/GPT-4 encoding
-   
+
    test_text = "Hello, this is a test of token counting!"
    tokens = encoding.encode(test_text)
-   
+
    print(f"Text: {test_text}")
    print(f"Tokens: {len(tokens)}")
    print(f"Token IDs: {tokens[:5]}...")  # Show first 5
@@ -367,13 +368,13 @@ By the end of this week, you will:
 
    ```python
    client = get_openai_client()
-   
+
    response = client.chat.completions.create(
        model="gpt-3.5-turbo",
        messages=[{"role": "user", "content": "Count to 5"}],
        max_tokens=20
    )
-   
+
    print("Response:", response.choices[0].message.content)
    print("Usage:", response.usage.total_tokens, "tokens")
    ```
@@ -442,18 +443,22 @@ By the end of this week, you will:
 
    ```markdown
    # Week 1 Reflection
-   
+
    ## What I Learned
-   - 
-   
+
+   -
+
    ## What Was Challenging
-   - 
-   
+
+   -
+
    ## Key Takeaways
-   - 
-   
+
+   -
+
    ## Questions for Next Week
-   - 
+
+   -
    ```
 
 4. **Prepare for Week 2** (5 min)
@@ -499,6 +504,7 @@ By the end of this week, you will:
 "Hello world" = 2 tokens
 "LLM Engineering" = 3 tokens (LLM + Engineering = 3)
 "ChatGPT" = 1 token
+
 ```
 
 ### Why Tokens Matter
@@ -532,6 +538,7 @@ text = "This is a sample text for token counting."
 print(f"Text: {text}")
 print(f"Tokens: {count_tokens(text)}")
 print(f"Estimated cost (GPT-3.5): ${count_tokens(text) * 0.0015 / 1000:.6f}")
+
 ```
 
 ---
@@ -568,4 +575,3 @@ You've successfully completed Week 1 if:
 ---
 
 **Remember:** Take your time, experiment, and don't rush. Understanding the fundamentals deeply will make everything easier later!
-

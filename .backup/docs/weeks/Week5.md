@@ -10,6 +10,7 @@
 ## 🎯 Week 5 Learning Objectives
 
 By the end of this week, you will:
+
 - [ ] Understand what agents are and how they work
 - [ ] Master ReAct (Reasoning + Acting) pattern
 - [ ] Build agent loops with tool integration
@@ -29,13 +30,13 @@ By the end of this week, you will:
 **Tasks (30 min):**
 
 1. **What are Agents?** (10 min)
-   
+
    **Agents** = LLM-powered systems that can:
    - Make decisions
    - Use tools (search, calculator, APIs)
    - Take actions
    - Learn from feedback
-   
+
    **Key Components:**
    - LLM (brain/reasoning)
    - Tools (actions it can take)
@@ -43,31 +44,31 @@ By the end of this week, you will:
    - Loop (observation → thought → action → repeat)
 
 2. **Simple Agent Example** (10 min)
-   
+
    Create `agents/simple_agent.py`:
    ```python
    from scripts.api_client import get_openai_client
-   
+
    class SimpleAgent:
        def __init__(self):
            self.client = get_openai_client()
            self.memory = []
-       
+
        def think(self, user_input: str) -> str:
            """Agent thinks about what to do"""
            prompt = f"""
            You are a helpful assistant. The user said: {user_input}
-           
+
            What should you do? Respond with your action.
            """
-           
+
            response = self.client.chat.completions.create(
                model="gpt-3.5-turbo",
                messages=[{"role": "user", "content": prompt}]
            )
-           
+
            return response.choices[0].message.content
-       
+
        def run(self, user_input: str):
            """Run the agent"""
            thought = self.think(user_input)
@@ -76,12 +77,12 @@ By the end of this week, you will:
    ```
 
 3. **Agent vs Simple LLM** (10 min)
-   
+
    **Simple LLM:**
    - One-shot: Question → Answer
    - No tools
    - No memory
-   
+
    **Agent:**
    - Loop: Observe → Think → Act → Observe...
    - Has tools
@@ -105,16 +106,17 @@ By the end of this week, you will:
 **Tasks (30 min):**
 
 1. **What is ReAct?** (15 min)
-   
+
    **ReAct** = **Reasoning** + **Acting**
-   
+
    - **Reasoning**: LLM thinks about what to do
    - **Acting**: LLM uses tools to take actions
    - **Observation**: See results of actions
    - **Repeat**: Continue until goal achieved
-   
+
    **ReAct Loop:**
    ```
+
    Thought: [What should I do?]
    Action: [Use tool X]
    Observation: [Result from tool]
@@ -126,7 +128,7 @@ By the end of this week, you will:
    ```
 
 2. **Why ReAct?** (10 min)
-   
+
    - **Better Reasoning**: Explicit thought process
    - **Tool Integration**: Can use external tools
    - **Transparency**: See agent's reasoning
@@ -138,17 +140,17 @@ By the end of this week, you will:
    # ReAct prompt structure
    REACT_PROMPT = """
    Question: {question}
-   
+
    Thought: I need to {reasoning}
    Action: {tool_name}
    Action Input: {tool_input}
-   
+
    Observation: {tool_result}
-   
+
    Thought: {next_reasoning}
    Action: {next_tool}
    ...
-   
+
    Final Answer: {answer}
    """
    ```
@@ -169,18 +171,18 @@ By the end of this week, you will:
 **Tasks (30 min):**
 
 1. **Build ReAct Agent Core** (20 min)
-   
+
    Create `agents/react_agent.py`:
    ```python
    from typing import List, Dict, Callable
    from scripts.api_client import get_openai_client
-   
+
    class ReActAgent:
        def __init__(self, tools: Dict[str, Callable]):
            self.client = get_openai_client()
            self.tools = tools
            self.history = []
-       
+
        def format_tools_description(self) -> str:
            """Format tool descriptions for prompt"""
            descriptions = []
@@ -188,13 +190,13 @@ By the end of this week, you will:
                doc = func.__doc__ or "No description"
                descriptions.append(f"- {name}: {doc}")
            return "\n".join(descriptions)
-       
+
        def parse_response(self, response: str) -> Dict:
            """Parse ReAct response into thought/action/observation"""
            # Simple parsing - can be improved
            lines = response.split("\n")
            result = {"thought": "", "action": "", "action_input": "", "observation": ""}
-           
+
            for line in lines:
                if line.startswith("Thought:"):
                    result["thought"] = line.replace("Thought:", "").strip()
@@ -202,65 +204,65 @@ By the end of this week, you will:
                    result["action"] = line.replace("Action:", "").strip()
                elif line.startswith("Action Input:"):
                    result["action_input"] = line.replace("Action Input:", "").strip()
-           
+
            return result
-       
+
        def step(self, question: str, max_steps: int = 5) -> str:
            """Execute one ReAct step"""
-           
+
            # Build prompt with tools
            tools_desc = self.format_tools_description()
            history_str = "\n".join([str(h) for h in self.history[-3:]])
-           
+
            prompt = f"""
            You are a ReAct agent. Use the following tools to answer questions.
-           
+
            Available Tools:
            {tools_desc}
-           
+
            Previous Steps:
            {history_str}
-           
+
            Question: {question}
-           
+
            Use this format:
            Thought: [Your reasoning about what to do]
            Action: [Tool name]
            Action Input: [Input for tool]
-           
+
            Then I will provide the Observation, and you continue.
            """
-           
+
            response = self.client.chat.completions.create(
                model="gpt-4",  # GPT-4 works better for ReAct
                messages=[{"role": "user", "content": prompt}],
                temperature=0.3
            )
-           
+
            parsed = self.parse_response(response.choices[0].message.content)
-           
+
            # Execute action if tool specified
            if parsed["action"] and parsed["action"] in self.tools:
                tool = self.tools[parsed["action"]]
                observation = tool(parsed["action_input"])
                parsed["observation"] = observation
-           
+
            self.history.append(parsed)
            return parsed
-       
+
        def run(self, question: str, max_steps: int = 5) -> str:
            """Run ReAct loop until answer found"""
            for step_num in range(max_steps):
                result = self.step(question)
-               
+
                # Check if we have final answer
                if "Final Answer:" in str(result):
                    return result
-               
+
                # Prevent infinite loops
                if step_num >= max_steps - 1:
                    return "Max steps reached"
-           
+
            return "No answer found"
    ```
 
@@ -274,12 +276,12 @@ By the end of this week, you will:
            return str(result)
        except:
            return "Error: Invalid expression"
-   
+
    def search_knowledge(query: str) -> str:
        """Search knowledge base"""
        # Simplified - replace with actual search
        return f"Information about {query}"
-   
+
    # Initialize agent with tools
    tools = {
        "calculator": calculator,
@@ -310,7 +312,7 @@ By the end of this week, you will:
            agent = ReActAgent(tools)
            answer = agent.run(question)
            answers.append(answer)
-       
+
        # Return most common answer
        from collections import Counter
        return Counter(answers).most_common(1)[0][0]
@@ -322,7 +324,7 @@ By the end of this week, you will:
        def __init__(self, tools, memory_size=10):
            super().__init__(tools)
            self.memory_size = memory_size
-       
+
        def add_to_memory(self, item):
            """Add item to memory, maintain size"""
            self.history.append(item)
@@ -336,13 +338,13 @@ By the end of this week, you will:
        """ReAct step with error recovery"""
        try:
            result = self.step(question)
-           
+
            # If error, try to recover
            if "error" in result.get("observation", "").lower():
                # Agent can think about error and retry
                recovery = self.step(f"Previous action failed. {question}")
                return recovery
-           
+
            return result
        except Exception as e:
            # Log error and continue
@@ -363,20 +365,20 @@ By the end of this week, you will:
 **Tasks (30 min):**
 
 1. **Create ReAct Evaluation Framework** (15 min)
-   
+
    Create `eval/react_evaluator.py`:
    ```python
    def evaluate_react_agent(agent, test_cases: List[Dict]):
        """Evaluate ReAct agent on test cases"""
        results = []
-       
+
        for case in test_cases:
            question = case["question"]
            expected = case["expected"]
-           
+
            answer = agent.run(question)
            correct = check_answer(answer, expected)
-           
+
            results.append({
                "question": question,
                "answer": answer,
@@ -384,10 +386,10 @@ By the end of this week, you will:
                "correct": correct,
                "steps": len(agent.history)
            })
-       
+
        accuracy = sum(r["correct"] for r in results) / len(results)
        avg_steps = sum(r["steps"] for r in results) / len(results)
-       
+
        return {
            "accuracy": accuracy,
            "avg_steps": avg_steps,
@@ -425,6 +427,7 @@ By the end of this week, you will:
 ### ReAct Architecture
 
 ```
+
 ┌─────────────────────────────────────┐
 │         User Question                │
 └──────────────┬──────────────────────┘
@@ -452,6 +455,7 @@ By the end of this week, you will:
 ┌─────────────────────────────────────┐
 │   Final Answer: [Solution]           │
 └─────────────────────────────────────┘
+
 ```
 
 ### ReAct vs Other Patterns
@@ -490,6 +494,7 @@ Action: [Next tool]
 When you have the answer:
 Final Answer: [Your answer]
 """
+
 ```
 
 ### Implementing ReAct Agent
@@ -520,6 +525,7 @@ tools = {
     "web_search": web_search,
     "get_weather": get_weather
 }
+
 ```
 
 #### Step 2: Create ReAct Loop
@@ -530,47 +536,48 @@ class ReActAgent:
         self.tools = tools
         self.history = []
         self.client = get_openai_client()
-    
+
     def run(self, question: str, max_steps: int = 10):
         """Run ReAct loop"""
         for step in range(max_steps):
             # Get reasoning and action from LLM
             response = self.get_react_response(question)
             parsed = self.parse_react(response)
-            
+
             # Execute action
             if parsed["action"] in self.tools:
                 tool_result = self.tools[parsed["action"]](parsed["action_input"])
                 parsed["observation"] = tool_result
                 self.history.append(parsed)
-                
+
                 # Check if done
                 if "Final Answer" in response:
                     return self.extract_final_answer(response)
             else:
                 parsed["observation"] = f"Unknown tool: {parsed['action']}"
                 self.history.append(parsed)
-        
+
         return "Max steps reached"
-    
+
     def get_react_response(self, question: str) -> str:
         """Get ReAct response from LLM"""
         tools_desc = self.format_tools()
         history = self.format_history()
-        
+
         prompt = REACT_TEMPLATE.format(
             tools_description=tools_desc,
             history=history,
             question=question
         )
-        
+
         response = self.client.chat.completions.create(
             model="gpt-4",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.3
         )
-        
+
         return response.choices[0].message.content
+
 ```
 
 ### ReAct Best Practices
@@ -601,6 +608,7 @@ class ReActAgent:
 ### ReAct Use Cases
 
 ✅ **Good for ReAct:**
+
 - Multi-step problem solving
 - Tasks requiring external data
 - Complex reasoning + tool use
@@ -608,6 +616,7 @@ class ReActAgent:
 - Planning and execution
 
 ❌ **Not ideal for ReAct:**
+
 - Simple one-step questions
 - Tasks without tool needs
 - When speed is critical
@@ -633,6 +642,7 @@ class ReActAgent:
 # Step 3:
 # Thought: I have all the information
 # Final Answer: Weather in Paris is 25°C (77°F), Cloudy
+
 ```
 
 ### ReAct vs Chain-of-Thought
@@ -652,53 +662,59 @@ class ReActAgent:
 ### Advanced ReAct Patterns
 
 #### 1. ReAct with Memory
+
 ```python
 class ReActAgentWithMemory(ReActAgent):
     def __init__(self, tools, memory_size=10):
         super().__init__(tools)
         self.long_term_memory = []
         self.memory_size = memory_size
-    
+
     def remember(self, key: str, value: str):
         """Store in long-term memory"""
         self.long_term_memory.append({"key": key, "value": value})
         if len(self.long_term_memory) > self.memory_size:
             self.long_term_memory.pop(0)
-    
+
     def recall(self, key: str) -> str:
         """Retrieve from memory"""
         for item in self.long_term_memory:
             if item["key"] == key:
                 return item["value"]
         return None
+
 ```
 
 #### 2. ReAct with Planning
+
 ```python
 def react_with_planning(question: str):
     """ReAct with initial planning phase"""
     # Phase 1: Plan
     plan = create_plan(question)
-    
+
     # Phase 2: Execute with ReAct
     agent = ReActAgent(tools)
     result = agent.execute_plan(plan)
-    
+
     return result
+
 ```
 
 #### 3. Multi-Agent ReAct
+
 ```python
 class MultiAgentReAct:
     def __init__(self, agents: List[ReActAgent]):
         self.agents = agents
-    
+
     def coordinate(self, question: str):
         """Coordinate multiple agents"""
         # Distribute tasks
         # Agents work in parallel
         # Combine results
         pass
+
 ```
 
 ### Measuring ReAct Performance
@@ -711,26 +727,27 @@ def evaluate_react(agent, test_cases):
         "tool_usage": {},
         "error_rate": 0
     }
-    
+
     for case in test_cases:
         result = agent.run(case["question"])
-        
+
         # Check accuracy
         if check_answer(result, case["expected"]):
             metrics["accuracy"] += 1
-        
+
         # Count steps
         metrics["avg_steps"] += len(agent.history)
-        
+
         # Track tool usage
         for step in agent.history:
             tool = step.get("action", "")
             metrics["tool_usage"][tool] = metrics["tool_usage"].get(tool, 0) + 1
-    
+
     metrics["accuracy"] /= len(test_cases)
     metrics["avg_steps"] /= len(test_cases)
-    
+
     return metrics
+
 ```
 
 ### Common ReAct Mistakes
@@ -786,4 +803,3 @@ def evaluate_react(agent, test_cases):
 ---
 
 **Remember:** ReAct combines the best of CoT (reasoning) with tool use (acting). It's powerful for complex multi-step problems!
-

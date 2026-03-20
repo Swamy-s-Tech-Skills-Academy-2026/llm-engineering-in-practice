@@ -10,6 +10,7 @@
 ## 🎯 Week 9 Learning Objectives
 
 By the end of this week, you will:
+
 - [ ] Understand planning agents
 - [ ] Compare planning vs reactive approaches
 - [ ] Build planning agents
@@ -36,7 +37,7 @@ By the end of this week, you will:
        def plan(self, goal: str) -> List[str]:
            """Create plan to achieve goal"""
            pass
-       
+
        def execute(self, plan: List[str]):
            """Execute plan steps"""
            pass
@@ -62,7 +63,7 @@ By the end of this week, you will:
        prompt = f"""
        Create a step-by-step plan to achieve this goal:
        Goal: {goal}
-       
+
        Plan:
        1. [Step 1]
        2. [Step 2]
@@ -147,4 +148,3 @@ By the end of this week, you will:
 - Cloud deployment
 - Scaling strategies
 - Production considerations
-
