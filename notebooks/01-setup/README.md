@@ -9,11 +9,13 @@ This directory contains diagnostic tools to verify your LLM Engineering Learning
 Execute the notebook code path programmatically:
 
 **From project root (recommended):**
+
 ```powershell
 uv run python notebooks\01-setup\run_diagnostics.py
 ```
 
 **Or from the 01-setup directory:**
+
 ```powershell
 cd notebooks\01-setup
 python run_diagnostics.py
@@ -60,11 +62,13 @@ python 01_diagnostics.py
 Execute the notebook's code path programmatically. This is the recommended method for programmatic execution.
 
 **From project root (recommended):**
+
 ```powershell
 uv run python notebooks\01-setup\run_diagnostics.py
 ```
 
 **Or from the 01-setup directory:**
+
 ```powershell
 cd notebooks\01-setup
 python run_diagnostics.py
@@ -97,7 +101,8 @@ The diagnostics script performs comprehensive checks including:
 ## Output
 
 The script generates a detailed report saved to:
-```
+
+```text
 docs/reports/diagnostics-report-YYYYMMDD_HHMMSS.txt
 ```
 
@@ -113,4 +118,3 @@ If you encounter issues:
 4. **Network Issues**: Check firewall/VPN settings if connectivity tests fail
 
 For detailed troubleshooting guidance, see `03_troubleshooting.ipynb`.
-

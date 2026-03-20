@@ -25,7 +25,7 @@ Ignore this section at your peril! 80% of the questions I get about setup are so
 
 4. **Microsoft Build Tools**: If you've not worked with Data Science packages on Windows before, you might need to install Microsoft Build Tools. Here are [instructions](https://chatgpt.com/share/67b0b762-327c-8012-b809-b4ec3b9e7be0). A student also mentioned that [these instructions](https://github.com/bycloudai/InstallVSBuildToolsWindows) might be helpful for people on Windows 11.
 
-5. **SSL and other network issues due to Corporate Security**: If you ever get issues with SSL, such as an API Connection issue or any certificate issue, or an error trying to download files from Ollama (a Cloudflare error) then see Q15 [here](https://edwarddonner.com/faq)
+5. **SSL and other network issues due to Corporate Security**: If you ever get issues with SSL, such as an API Connection issue or any certificate issue, or an error trying to download files from Ollama (a Cloudflare error) then see [FAQ Q15](https://edwarddonner.com/faq)
 
 ## STEP 1 - Installing Git, Projects Directory, and Cursor
 
