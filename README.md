@@ -80,7 +80,7 @@ This repository is a **personal learning workspace** maintained by **Viswanatha 
 - **Languages**: Python, Go, Node.js, Angular, React, Next.js, .NET Aspire, .NET Web API, .NET Blazor
 - **Frameworks**: LangChain, LangGraph, OpenAI Agent SDK, Azure Agent SDK
 
-> **Note**: Detailed weekly guides are in [`docs/weeks/`](docs/weeks/) - each week contains day-by-day breakdowns, exercises, and deliverables.
+> **Note**: Detailed weekly guides are archived in `.backup/docs/weeks/` and restored to `docs/weeks/` as learning progresses. Each week contains day-by-day breakdowns, exercises, and deliverables.
 
 ## 🧪 Current Status
 
@@ -90,7 +90,7 @@ This repository is a **personal learning workspace** maintained by **Viswanatha 
 ✅ **Deep Dives** - 8 dedicated deep dive weeks (CoT, ReAct, Reasoning, Platforms, Frameworks)  
 🚧 **In Progress** - Code implementation as you learn (planning structure complete)
 
-**Ready to Start**: Begin with [`docs/learning-plan.md`](docs/learning-plan.md) and [`docs/weeks/Week1.md`](docs/weeks/Week1.md)
+**Ready to Start**: Begin with [`docs/learning-plan.md`](docs/learning-plan.md)
 
 ## References
 
@@ -147,7 +147,7 @@ This project uses **uv** for fast Python package management.
    uv run jupyter lab
    ```
 
-**Start Learning**: Open [`docs/learning-plan.md`](docs/learning-plan.md) for the master guide, then begin with [`docs/weeks/Week1.md`](docs/weeks/Week1.md)
+**Start Learning**: Open [`docs/learning-plan.md`](docs/learning-plan.md) for the master guide, then follow `src/week1/day1/README.md` to begin Week 1
 
 ## 📚 Primary Course Reference
 
@@ -205,24 +205,23 @@ Supplemented with official docs, open papers, and community benchmarks.
 > **📖 Full Documentation**: See [docs/01_repository-structure.md](docs/01_repository-structure.md) for detailed organization rules.
 
 ```text
-├─ .backup/            # Archived legacy files (environment.yml, requirements.txt)
-├─ agents/             # Agent & tool orchestration experiments
-├─ data/               # Sample corpora / synthetic sets (non-sensitive)
-│  ├─ raw/             # Unprocessed source data
-│  └─ processed/       # Cleaned / chunked / vectorizable data
+├─ .backup/            # Frozen backup: eval/, scripts/, notebooks/, prompts/, docs/weeks/ — restore as needed
+├─ agents/             # Agent & tool orchestration experiments (planned)
+├─ data/               # Sample corpora / synthetic sets (planned)
 ├─ docs/               # Documentation, guides, and decision logs
 │  ├─ images/          # Documentation images
 │  ├─ reports/         # Generated reports and diagnostics
 │  ├─ retros/          # Retrospective notes and learnings
-│  ├─ weeks/           # 25 weekly learning guides (Week1.md - Week25.md)
 │  └─ learning-plan.md # Master 25-week learning plan
-├─ eval/               # Evaluation scripts, metrics, and experiment logging
-├─ notebooks/          # Exploratory Jupyter notebooks & analysis
-│  └─ 01-setup/        # Setup diagnostics and troubleshooting
-├─ prompts/            # Prompt templates & variant experiments
-├─ rag/                # Retrieval prototypes (index builders, query flows)
-├─ scripts/            # Utility CLIs (ingest, batch eval, cost reporting)
-├─ src/                # Source code modules (when needed)
+├─ eval/               # Evaluation scripts, metrics, and experiment logging (planned)
+├─ notebooks/          # Exploratory Jupyter notebooks & analysis (planned)
+├─ prompts/            # Prompt templates & variant experiments (planned)
+├─ rag/                # Retrieval prototypes (index builders, query flows) (planned)
+├─ scripts/            # Utility CLIs (ingest, batch eval, cost reporting) (planned)
+├─ source-material/    # Read-only reference material (zero-copy policy)
+├─ src/                # All active learning code
+│  ├─ setup/           # Environment diagnostics and troubleshooting tools
+│  └─ week1/day1/      # Week 1, Day 1 notebook, scraper, and README
 ├─ tools/              # Custom tool / function call definitions
 ├─ .gitignore          # Git ignore rules
 ├─ LICENSE             # Project license
@@ -355,7 +354,7 @@ uv remove package-name
 For the complete **25-week structured learning path**, daily workflow patterns, metrics schema, multi-platform support, and detailed weekly guides, see:
 
 - **[`docs/learning-plan.md`](docs/learning-plan.md)** - Master learning plan with overview, quick start, prerequisites, and 25-week table
-- **[`docs/weeks/Week1.md`](docs/weeks/Week1.md) through [`docs/weeks/Week25.md`](docs/weeks/Week25.md)** - Detailed day-by-day guides for each week
+- **`docs/weeks/Week1.md` through `docs/weeks/Week25.md`** - Detailed day-by-day guides (archived in `.backup/docs/weeks/`, restored as learning progresses)
 
 **Each week includes:**
 
