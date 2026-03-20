@@ -225,19 +225,18 @@ This will create a timestamped diagnostics report in `docs/reports/` with compre
 Let's verify your LLM environment is working:
 
 ```powershell
-# Test the evaluation utilities
-uv run python -m eval.log_utils
-uv run python -m eval.metrics
+# Run the diagnostics script
+cd notebooks/01-setup && uv run python 01_diagnostics.py
 
 ```
 
 ### Open Your First Learning Notebook
 
-The main learning notebooks are stored in the `.backup/notebooks/` folder from the original course. You can explore:
+The main learning content is in `src/week1/day1/`. Open it in VS Code or Jupyter:
 
-- `.backup/notebooks/day1.ipynb` - Your first LLM application
-- `notebooks/01-setup/diagnostics.ipynb` - Environment verification
-- `notebooks/01-setup/troubleshooting.ipynb` - Common issues and solutions
+- `src/week1/day1/day1.ipynb` - Your first LLM application (website summariser)
+- `notebooks/01-setup/02_diagnostics.ipynb` - Environment verification
+- `notebooks/01-setup/03_troubleshooting.ipynb` - Common issues and solutions
 
 When opening a notebook:
 
@@ -260,14 +259,10 @@ When opening a notebook:
 
 Your workspace is organized for systematic LLM learning:
 
-- `prompts/` - Prompt templates and experiments
-- `rag/` - Retrieval-augmented generation implementations  
-- `agents/` - Agent loops and reasoning systems
-- `tools/` - Function calling and tool definitions
-- `eval/` - Evaluation metrics and experiment logging
-- `notebooks/01-setup/` - Environment setup and diagnostics
-- `.backup/notebooks/` - Original course notebooks and exercises
+- `src/` - Weekly learning content (week1/day1/ etc.)
 - `docs/` - Documentation and learning guides
 - `docs/reports/` - Diagnostic reports and system information
+- `notebooks/01-setup/` - Environment setup and diagnostics
+- `.backup/` - Archived content, restore as needed
 
 Happy learning!
