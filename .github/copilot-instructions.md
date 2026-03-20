@@ -64,14 +64,14 @@ src/
 - Reference files (frozen backup) live in `.backup/` and are restored week-by-week.
 - `src/setup/` is the only top-level exception — it holds shared environment diagnostics.
 
-### Global support folders (outside `src/`)
+### Global support folders (outside `src/weekN/dayN/`)
 
-| Folder       | Purpose                                                  |
-| ------------ | -------------------------------------------------------- |
-| `docs/`      | Setup guide, learning plan, retrospectives               |
-| `tools/`     | PowerShell / shell utility scripts                       |
-| `.backup/`   | Frozen backups (eval, scripts, notebooks, prompts, etc.) |
-| `source-material/` | Read-only reference — zero-copy policy applies     |
+| Folder       | Purpose |
+| ------------ | ------- |
+| `docs/`      | Lightweight: learning plan (`learning-plan.md`), setup notes, reports. Full `docs/weeks/Week*.md` may live in **`.backup/docs/weeks/`** until you restore them. |
+| `tools/`     | PowerShell / shell utility scripts (optional) |
+| `.backup/`   | **Frozen archive** — previous layouts, extra notebooks, root-level `prompts/`, `eval/`, `scripts/`, etc. Not the active working tree. |
+| `source-material/` | Read-only reference — **zero-copy** synthesis only |
 
 ---
 
@@ -243,7 +243,7 @@ When migrating content from `source-material/`:
 
 1. **Read** from `source-material/` to understand concepts
 2. **Synthesize** — rewrite in your own words (no copy-paste)
-3. **Publish** to educational folders: `reading-notes/`, `notebooks/`, `examples/`, `docs/`, `src/`
+3. **Publish** synthesized work under **`src/weekN/dayN/`** (and `docs/` for prose/plan updates when needed). Do **not** copy files verbatim from `source-material/`.
 4. **Cite** when using specific definitions/theorems
 
 ### ✍️ Zero-Copy Policy

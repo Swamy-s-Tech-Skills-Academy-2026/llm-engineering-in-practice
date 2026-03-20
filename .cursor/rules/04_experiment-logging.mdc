@@ -1,10 +1,10 @@
 ---
 description: Experiment logging and evaluation standards
-globs: eval/**/*.py, scripts/**/*.py
+globs: **/eval/**/*.py, scripts/**/*.py
 ---
 # Experiment Logging Standard
 
-## Logging Format
+## Logging format
 
 When generating code that runs experiments, ensure it logs (CSV / JSONL acceptable):
 
@@ -14,22 +14,22 @@ run_id, timestamp, task, model, prompt_hash, temperature, input_tokens, output_t
 
 ## Implementation
 
-- Provide a helper: `eval/log_utils.py` (create if missing) with `log_run(dict)`
+- Provide a helper: **`src/weekN/dayN/eval/log_utils.py`** with `log_run(dict)` when that day logs experiments (incremental layout).
 - Never silently swallow exceptions; log structured error rows
 
 ---
 
-## Evaluation Utilities
+## Evaluation utilities
 
 If creating evaluation code:
 
 - Provide deterministic seed usage (`random`, `numpy`, framework-specific)
 - Separate metric calculation from data loading
-- Include a CLI entry (e.g., `python -m eval.run --dataset qa_small.json --model openai:gpt-4o-mini`)
+- Include a CLI or `if __name__ == "__main__":` smoke entry when helpful
 
 ---
 
-## Evaluation Philosophy
+## Evaluation philosophy
 
 - Prefer small, fast feedback loops
 - Track: latency, token usage, factuality, relevance, refusal rate

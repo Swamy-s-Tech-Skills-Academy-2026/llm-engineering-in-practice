@@ -28,7 +28,8 @@ Code examples provided in:
 
 This repository follows a **structured 25-week learning plan**:
 - See `docs/learning-plan.md` for the master document
-- See `docs/weeks/Week1.md` through `docs/weeks/Week25.md` for detailed weekly guides
+- **Active code** is organized under **`src/weekN/dayN/`** — add folders only as each day needs them
+- Detailed weekly guides (`Week1.md`–`Week25.md`) may be **archived in `.backup/docs/weeks/`** and restored to `docs/weeks/` when you reach that week
 
 ### Key Deep Dives
 

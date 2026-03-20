@@ -1,46 +1,50 @@
 ---
-description: Repository structure for LLM Engineering
+description: Repository structure — week/day under src, incremental folders
 globs: *
 ---
 # Repository Structure
 
 **Project**: LLM Engineering in Practice
 
-> **📖 Single Source of Truth**: For the complete and detailed repository structure, naming conventions, and workflow standards, please refer to [README.md](../../README.md) and [docs/learning-plan.md](../../docs/learning-plan.md).
+## Current philosophy (simple & incremental)
 
----
+1. **Active learning code** lives under **`src/weekN/dayN/`** — one folder per day.
+2. **Create subfolders only when needed** for that day (e.g. `prompts/`, `data/`, `eval/`, `rag/`, `agents/`). No empty placeholder trees.
+3. **`src/setup/`** is the **only** shared exception — environment diagnostics and troubleshooting.
+4. **`.backup/`** — frozen archive (full weekly guides, old notebooks, prompts, scripts). Restore or copy into the live tree **when** you need that material.
+5. **`source-material/`** — read-only reference; **zero-copy** synthesis into `src/` (or `docs/`) when migrating ideas.
 
-## Directory Expectations
+## `src/` layout (example)
 
-| Folder       | Purpose                                               |
-| ------------ | ----------------------------------------------------- |
-| `prompts/`   | Prompt templates + metadata (JSON/YAML)               |
-| `rag/`       | Index builders, retrievers, query pipelines           |
-| `agents/`    | Agent loops, reasoning traces, tool registries        |
-| `tools/`     | Tool / function call schema definitions               |
-| `eval/`      | Metrics calculators, experiment logs, harness scripts |
-| `scripts/`   | CLI utilities (ingest, batch eval, cost reporting)    |
-| `notebooks/` | Exploratory analysis & prototyping                    |
-| `docs/`      | Decision logs, retrospectives, learning plan          |
-| `data/`      | Sample corpora / synthetic sets (non-sensitive)      |
-| `src/`       | Source code modules (when needed)                     |
-| `source-material/` | Staging area for raw content (Read-Only, never modify/delete) |
+```text
+src/
+├── README.md
+├── setup/                 # diagnostics — not tied to a single day
+└── week1/
+    └── day1/              # today = only what Day 1 needs
+        ├── README.md
+        ├── day1.ipynb
+        ├── scraper.py
+        └── eval/
+            └── log_utils.py
+```
 
-**Note**: If a folder is missing, create it with a minimal README or `.gitkeep` when first needed.
+## Other repo folders
 
----
+| Location | Purpose |
+| -------- | ------- |
+| `docs/` | Learning plan, setup notes, reports (lightweight); full `weeks/*.md` may live in `.backup/` until restored |
+| `tools/` | Shell / PowerShell helpers (optional) |
+| `.backup/` | Archived content — do not treat as the active working tree |
+| `source-material/` | Read-only staging — never edit or delete |
 
-## Folder Intent
+## Prompts & eval (where they go)
 
-- **`prompts/`**: Prompt templates with metadata sidecars (`.prompt.txt` + `.meta.json`)
-- **`rag/`**: Retrieval prototypes (index builders, query flows)
-- **`agents/`**: Agent loops, reasoning traces, tool registries
-- **`tools/`**: Custom tool / function call definitions
-- **`eval/`**: Evaluation scripts, metrics, and experiment logging
-- **`scripts/`**: Utility CLIs (ingest, batch eval, cost reporting)
-- **`notebooks/`**: Exploratory Jupyter notebooks & analysis
-- **`docs/`**: Documentation, guides, decision logs, weekly learning plans
-- **`data/raw/`**: Unprocessed source data
-- **`data/processed/`**: Cleaned / chunked / vectorizable data
-- **`src/`**: Reusable source code modules
-- **`source-material/`**: Staging area for raw content (Read-Only, never modify/delete)
+- **Prefer** `src/weekN/dayN/prompts/` and `src/weekN/dayN/eval/` when that day introduces them.
+- Avoid scattering root-level `prompts/`, `eval/`, `notebooks/` unless you deliberately choose a monorepo layout (legacy copies may sit in `.backup/`).
+
+## Single source of truth for “what to do today”
+
+- **Day scope:** `src/weekN/dayN/README.md`
+- **Course roadmap:** `docs/learning-plan.md`
+- **Deep weekly detail (if archived):** `.backup/docs/weeks/WeekN.md`

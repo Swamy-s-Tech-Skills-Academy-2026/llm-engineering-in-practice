@@ -90,7 +90,7 @@ This repository is a **personal learning workspace** maintained by **Viswanatha 
 ✅ **Deep Dives** - 8 dedicated deep dive weeks (CoT, ReAct, Reasoning, Platforms, Frameworks)  
 🚧 **In Progress** - Code implementation as you learn (planning structure complete)
 
-**Ready to Start**: Begin with [`docs/learning-plan.md`](docs/learning-plan.md)
+**Ready to Start**: Open [`src/week1/day1/README.md`](src/week1/day1/README.md) for **Week 1 · Day 1**, and skim [`docs/learning-plan.md`](docs/learning-plan.md) for the full roadmap. Weekly detail files may live in [`.backup/docs/weeks/`](.backup/docs/weeks/) until you restore them to `docs/weeks/`.
 
 ## References
 
@@ -205,23 +205,19 @@ Supplemented with official docs, open papers, and community benchmarks.
 > **📖 Full Documentation**: See [docs/01_repository-structure.md](docs/01_repository-structure.md) for detailed organization rules.
 
 ```text
-├─ .backup/            # Frozen backup: eval/, scripts/, notebooks/, prompts/, docs/weeks/ — restore as needed
-├─ agents/             # Agent & tool orchestration experiments (planned)
-├─ data/               # Sample corpora / synthetic sets (planned)
+├─ .backup/            # Frozen archive (old eval/, notebooks/, prompts/, docs/weeks/, etc.) — restore on demand
+├─ agents/             # Agent & tool orchestration experiments (planned, when needed)
+├─ data/               # Sample corpora / synthetic sets (planned, when needed)
 ├─ docs/               # Documentation, guides, and decision logs
 │  ├─ images/          # Documentation images
 │  ├─ reports/         # Generated reports and diagnostics
 │  ├─ retros/          # Retrospective notes and learnings
 │  └─ learning-plan.md # Master 25-week learning plan
-├─ eval/               # Evaluation scripts, metrics, and experiment logging (planned)
-├─ notebooks/          # Exploratory Jupyter notebooks & analysis (planned)
-├─ prompts/            # Prompt templates & variant experiments (planned)
-├─ rag/                # Retrieval prototypes (index builders, query flows) (planned)
-├─ scripts/            # Utility CLIs (ingest, batch eval, cost reporting) (planned)
+├─ rag/                # Retrieval prototypes (planned, when needed)
 ├─ source-material/    # Read-only reference material (zero-copy policy)
-├─ src/                # All active learning code
-│  ├─ setup/           # Environment diagnostics and troubleshooting tools
-│  └─ week1/day1/      # Week 1, Day 1 notebook, scraper, and README
+├─ src/                # Active learning: add weekN/dayN (and subfolders) as each day needs them
+│  ├─ setup/           # Shared env diagnostics (exception to week/day layout)
+│  └─ week1/day1/      # Current scope: notebook, scraper, eval/, README
 ├─ tools/              # Custom tool / function call definitions
 ├─ .gitignore          # Git ignore rules
 ├─ LICENSE             # Project license

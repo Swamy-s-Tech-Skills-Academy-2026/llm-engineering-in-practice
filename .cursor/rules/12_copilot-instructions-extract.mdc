@@ -1,169 +1,69 @@
 ---
-description: Key guidelines extracted from copilot-instructions.md for AI assistants
+description: Guidelines aligned with copilot-instructions.md (week/day src layout)
 globs: *
 ---
 # Copilot Instructions Extract
 
-**Source**: `.github/copilot-instructions.md` from this repository
-**Purpose**: Key guidelines for AI assistants working on this repository
+**Source**: `.github/copilot-instructions.md`  
+**Purpose**: Key rules for AI assistants in this repository.
 
 ---
 
-## 🎯 Repository Context
+## Philosophy
 
-**LLM Engineering in Practice** is a learning workspace for mastering Large Language Model engineering, tooling, and real-world application patterns. It follows a structured 25-week learning plan covering prompt design, RAG, agents, tool/function calling, and evaluation.
-
-### Target Audience
-
-- Learners interested in LLM engineering and practical AI applications
-- Developers building LLM-powered applications
-- Students following the 25-week structured learning path
-
-### Multi-Provider & Multi-Language Support
-
-- **Providers**: All implementations support both OpenAI and Azure OpenAI from Week 1
-- **Languages**: Python, Go, Node.js, Angular, React, Next.js, .NET (Aspire, Web API, Blazor)
-- **Frameworks**: LangChain, LangGraph, OpenAI Agent SDK, Azure Agent SDK
+- **Incremental learning:** Work **one week / one day at a time**. Add files and subfolders under `src/weekN/dayN/` **only when that day’s lesson needs them**.
+- **Simple `src/` tree:** Everything for a lesson belongs in its day folder; **`src/setup/`** is the only shared code area outside `weekN/dayN/`.
+- **`.backup/`:** Frozen copies of broader material (e.g. all `Week*.md`, extra labs). Restore on demand — do not assume those paths exist in the live tree.
+- **25-week plan** still applies at the **course** level; the **repo** stays minimal until each day adds artifacts.
 
 ---
 
-## 🔧 Development Guidelines
+## Source material (`source-material/`)
 
-### Source Material Staging
-
-**🚫 Critical Restrictions:**
-
-- **Read-Only Policy**: 
-  - **NEVER modify** any file inside `source-material/`
-  - **NEVER overwrite** any file inside `source-material/`
-  - **NEVER edit** content even if it contains errors
-  - Files are **permanent reference materials**
-
-- **No Deletion Policy**:
-  - **NEVER delete** anything from `source-material/`
-  - Content remains even after migration
-  - Serves as **permanent historical reference**
-
-**🔄 Migration Workflow:**
-1. Read from `source-material/` to understand concepts
-2. Synthesize - Rewrite in your own words (NO copy-paste)
-3. Publish to educational folders (`docs/`, `notebooks/`, `prompts/`, `src/`, `agents/`, `rag/`, `tools/`)
-4. Cite when using specific definitions/theorems
-
-**✅ Zero-Copy Policy:**
-- **Good Synthesis**: Demonstrates understanding, uses different vocabulary, explains concepts
-- **Bad Synthesis (Rejected)**: Word-for-word copying, minor rephrasing, close paraphrasing without understanding
-
-**📁 Purpose**: The folder is a staging area for raw author content, book transcripts/excerpts, PDF extracts, reference materials, and original code examples. These materials remain untouched and serve as permanent references while you create original, synthesized educational content.
-
-### Project Focus
-
-- **LLM Engineering**: Focus on practical experimentation with prompt design, RAG, agents, tool/function calling, evaluation
-- **Reproducibility**: Log model + prompt versions, use seeds where supported
-- **Multi-Platform**: Support both OpenAI and Azure OpenAI from Week 1
-- **Evaluation-Ready**: Keep output structures stable for future evaluation
-
-### Code Style (Python)
-
-- Follow PEP 8 style guide
-- Use type hints (PEP 484) for all new functions
-- Add short docstrings (one-line summary + param annotations if non-trivial)
-- Keep functions < ~60 lines; refactor if growing
-- Return structured data (dict / dataclass) instead of raw tuples
-- **Comments**: Comment liberally to explain the *why* of the operation, not just the *how*
-- **No hardcoded paths**: Use `pathlib` or relative paths
-
-### Prompt Template Convention
-
-- Store prompt templates as `.prompt.txt` or `.jinja` in `prompts/`
-- Include metadata sidecar: `name.meta.json` with version, description, variables, intended_model, notes
-- When requesting structured output, show explicit JSON schema in prompt and add validation code
-
-### Tool / Function Calling
-
-- Define each tool in `tools/` with: description, input schema (Pydantic or dataclass), handler function, safety notes
-- Include a `tools/registry.py` that exposes `get_tool_specs()` returning structured definitions
-
-### Agents
-
-- Keep first implementations simple (reactive loop) before adding planning
-- Always log: step number, thought (if model provided), selected tool, tool arguments, tool result, cumulative context size
-- Provide a cancellation condition (max steps, max tokens, explicit goal reached)
-
-### Experiment Logging
-
-- Log experiments in CSV/JSONL format with: run_id, timestamp, task, model, prompt_hash, temperature, input_tokens, output_tokens, latency_ms, score_relevance, score_factuality, notes
-- Provide helper: `eval/log_utils.py` with `log_run(dict)`
-- Never silently swallow exceptions; log structured error rows
-
-### Documentation Standards
-
-- **Weekly guides**: All weekly guides go in `docs/weeks/`
-- **Learning plan**: Master learning plan in `docs/learning-plan.md`
-- **Reports**: Generated reports go in `docs/reports/`
-- **Retrospectives**: Retrospective notes go in `docs/retros/`
-
-### Notebook Guidelines
-
-- Structure notebooks with clear headers
-- Include markdown cells explaining the concept before the code
-- Ensure all cells run sequentially
-- **Logical Flow**: Import -> Load Data -> Analysis -> Plot -> Conclusion
-- **No Hidden State**: Avoid variables defined in deleted cells
-- **Reproducibility**: Always set random seeds where supported
-- **Visualization Standards**: All plots must have titles, axis labels, and legends
+- **Read-only:** Never modify, overwrite, or delete.
+- **Migration:** Read → **synthesize** (your own words, no copy-paste) → publish under **`src/weekN/dayN/`** (or `docs/` for prose). Cite definitions/theorems when needed.
+- **Zero-copy:** Rejected: verbatim or thin paraphrase from source-material.
 
 ---
 
-## 🚀 Environment & Commands
+## Code & notebooks
 
-**Environment**: Windows, PowerShell, Python 3.11+, Jupyter Notebooks
-**Note**: All commands and scripts should use PowerShell syntax. File paths use Windows format.
+- **Python:** Type hints, docstrings, functions &lt; ~60 lines, `.env` for secrets, pathlib-friendly paths.
+- **Notebooks:** Clear markdown before code; run top-to-bottom; seeds where randomness matters.
+- **Prompts:** Prefer `src/weekN/dayN/prompts/` with `name.prompt.txt` + `name.meta.json` when that day uses templates.
+- **Experiment logging:** Prefer `src/weekN/dayN/eval/log_utils.py` with `log_run(dict)` when that day logs runs.
 
-**Python Environment:**
+---
+
+## Multi-provider & stack (course goals)
+
+- **Providers:** OpenAI + Azure OpenAI where the lesson applies.
+- **Languages / frameworks:** Python first in `src/`; other stacks per learning plan as you progress.
+
+---
+
+## Documentation
+
+- **Today’s steps:** `src/weekN/dayN/README.md`
+- **Roadmap:** `docs/learning-plan.md`
+- **Archived weekly guides:** `.backup/docs/weeks/` (restore to `docs/weeks/` when needed)
+
+---
+
+## Environment (Windows / PowerShell)
 
 ```powershell
-# Optional: Suppress cross-drive hardlink warnings (if expected)
-$Env:UV_LINK_MODE = "copy"
-
-# Create virtual environment and install dependencies
+$Env:UV_LINK_MODE = "copy"   # optional
 uv sync
-```
-
-**Jupyter:**
-
-```powershell
+uv run python src/setup/run_diagnostics.py
 uv run jupyter lab
 ```
 
 ---
 
-## 🧠 Prompt Engineering Tips
+## Quality checklist
 
-When asking AI assistants for help:
-
-- Specify the LLM engineering concept clearly (e.g., "Implement a ReAct agent")
-- Request multi-provider support (OpenAI + Azure OpenAI)
-- Ask for multi-language examples when applicable
-- Request proper experiment logging
-- Specify reproducibility requirements (seeds, version logging)
-
-## ✅ Quality Checklist
-
-### Before Submitting Code/Notebooks
-
-- [ ] **Kernel Restart & Run All** passes without errors
-- [ ] All random processes use fixed seeds for reproducibility
-- [ ] Visualizations have titles, labels, and legends
-- [ ] Code comments explain the *why* (LLM engineering reasoning), not just the *how*
-- [ ] Prompt templates have metadata sidecars
-- [ ] Experiment logs follow standard format
-- [ ] Multi-provider support where applicable
-- [ ] No hardcoded paths (use `pathlib` or relative paths)
-
-### Content Review
-
-- [ ] Content is original synthesis (zero-copy policy)
-- [ ] LLM engineering concepts are explained before code implementation
-- [ ] Citations included for definitions and theorems
-- [ ] Prompt templates properly formatted with metadata
+- [ ] Day folder contains only what that day needs; no empty placeholder dirs
+- [ ] No secrets in git; use `.env`
+- [ ] Content from source-material is synthesized, not copied
+- [ ] Kernel Restart & Run All passes for notebooks touched

@@ -17,16 +17,16 @@ This folder contains the Cursor rule files (`.mdc`) used to guide edits in this 
 Project focus, multi-provider support, and learning path structure
 
 ### `02_repository-structure.mdc`
-Repository structure expectations and directory purposes
+Week/day layout under `src/`, `.backup/` archive, incremental folders
 
 ### `03_code-quality.mdc`
 Code style, type hints, documentation, and quality standards
 
 ### `04_experiment-logging.mdc`
-Experiment logging standards and evaluation practices
+Experiment logging — prefer `src/weekN/dayN/eval/`
 
 ### `05_prompt-templates.mdc`
-Prompt template conventions and metadata standards
+Prompt templates (prefer `src/weekN/dayN/prompts/`) and metadata
 
 ### `06_tools-and-agents.mdc`
 Tool/function calling and agent implementation guidelines
@@ -47,7 +47,7 @@ Primary directives and project philosophy
 Markdown and documentation standards
 
 ### `12_copilot-instructions-extract.mdc`
-Key guidelines extracted from copilot-instructions.md for AI assistants
+Copilot-aligned extract: incremental `src`, zero-copy, `.backup/`
 
 ---
 

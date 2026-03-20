@@ -1,14 +1,17 @@
 ---
-description: Prompt template conventions
-globs: prompts/**/*
+description: Prompt template conventions (prefer under src/weekN/dayN/prompts/)
+globs: **/prompts/**/*
 ---
 # Prompt Template Convention
 
-## Storage Format
+## Storage format
 
-Store prompt templates as plain `.txt` or `.jinja` in `prompts/` plus sidecar metadata: `name.prompt.txt` and `name.meta.json`:
+Store prompt templates as plain `.txt` or `.jinja` plus sidecar metadata: `name.prompt.txt` and `name.meta.json`.
+
+**Preferred location:** `src/weekN/dayN/prompts/` when that day introduces prompts (incremental layout). Legacy root-level `prompts/` may exist only in `.backup/`.
 
 **Example `name.meta.json`**:
+
 ```json
 {
   "version": 1,
@@ -19,16 +22,14 @@ Store prompt templates as plain `.txt` or `.jinja` in `prompts/` plus sidecar me
 }
 ```
 
-## Structured Output
+## Structured output
 
 When requesting structured output:
 - Show an explicit JSON schema in the prompt
 - Add validation code
 
----
+## Template management
 
-## Template Management
-
-- Centralize prompt templates in `prompts/` folder
+- Keep prompts **next to the day** that uses them when possible
 - Use metadata sidecars for versioning and documentation
 - Track prompt versions for reproducibility
