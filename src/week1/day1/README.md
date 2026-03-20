@@ -318,10 +318,10 @@ By the end of this week, you will:
 
 1. **Run the diagnostics** (25 min)
 
-   Use the existing setup in `notebooks/01-setup/`:
+   Use the existing setup in `src/setup/`:
 
-   - **From repo root:** `uv run python notebooks/01-setup/run_diagnostics.py`
-   - **Or open in Jupyter:** `notebooks/01-setup/02_diagnostics.ipynb`
+   - **From repo root:** `uv run python src/setup/run_diagnostics.py`
+   - **Or open in Jupyter:** `src/setup/02_diagnostics.ipynb`
 
    If you prefer to build your own from scratch, create `notebooks/00_diagnostics.ipynb` with these cells:
 
@@ -410,7 +410,7 @@ By the end of this week, you will:
 
 **Deliverable:**
 
-- Diagnostics passing (via `notebooks/01-setup/run_diagnostics.py` or `02_diagnostics.ipynb`)
+- Diagnostics passing (via `src/setup/run_diagnostics.py` or `02_diagnostics.ipynb`)
 
 **Resources:**
 
@@ -471,7 +471,7 @@ By the end of this week, you will:
 - [ ] Virtual environment created via `uv sync` (no manual activation needed)
 - [ ] `.env` file with API keys (not committed)
 - [ ] `scripts/api_client.py` working (run from repo root: `uv run python scripts/api_client.py`)
-- [ ] Diagnostics passing (`notebooks/01-setup/run_diagnostics.py` or `02_diagnostics.ipynb`)
+- [ ] Diagnostics passing (`src/setup/run_diagnostics.py` or `02_diagnostics.ipynb`)
 - [ ] First LLM lab done: [notebooks/week1-first-llm-lab.ipynb](../../notebooks/week1-first-llm-lab.ipynb) (web summarizer using `prompts/web-summarize.prompt.txt`)
 - [ ] (Optional) Video/transcript lab: [notebooks/week1-video-transcript-lab.ipynb](../../notebooks/week1-video-transcript-lab.ipynb) (video-to-text + summarization using `prompts/video-transcript-summarize.prompt.txt`)
 - [ ] `pyproject.toml` and `uv.lock` in place (managed by `uv sync`)

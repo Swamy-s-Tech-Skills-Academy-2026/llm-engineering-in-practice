@@ -211,10 +211,10 @@ Now let's verify your setup is working correctly:
 
 ```powershell
 # If using uv (recommended):
-cd notebooks/01-setup && uv run python 01_diagnostics.py
+cd src/setup && uv run python 01_diagnostics.py
 
 # If using venv (make sure it's activated):
-cd notebooks/01-setup && python 01_diagnostics.py
+cd src/setup && python 01_diagnostics.py
 
 ```
 
@@ -226,7 +226,7 @@ Let's verify your LLM environment is working:
 
 ```powershell
 # Run the diagnostics script
-cd notebooks/01-setup && uv run python 01_diagnostics.py
+cd src/setup && uv run python 01_diagnostics.py
 
 ```
 
@@ -235,8 +235,8 @@ cd notebooks/01-setup && uv run python 01_diagnostics.py
 The main learning content is in `src/week1/day1/`. Open it in VS Code or Jupyter:
 
 - `src/week1/day1/day1.ipynb` - Your first LLM application (website summariser)
-- `notebooks/01-setup/02_diagnostics.ipynb` - Environment verification
-- `notebooks/01-setup/03_troubleshooting.ipynb` - Common issues and solutions
+- `src/setup/02_diagnostics.ipynb` - Environment verification
+- `src/setup/03_troubleshooting.ipynb` - Common issues and solutions
 
 When opening a notebook:
 
@@ -253,7 +253,7 @@ When opening a notebook:
 1. Explore the repository structure and familiarize yourself with the folders
 1. Start with `.backup/notebooks/day1.ipynb` to build your first LLM application
 1. Use the `eval/` utilities to track your experiments from day one
-1. Run diagnostics regularly with `cd notebooks/01-setup && uv run python 01_diagnostics.py`
+1. Run diagnostics regularly with `cd src/setup && uv run python 01_diagnostics.py`
 
 ### Repository Structure Overview
 
@@ -262,7 +262,7 @@ Your workspace is organized for systematic LLM learning:
 - `src/` - Weekly learning content (week1/day1/ etc.)
 - `docs/` - Documentation and learning guides
 - `docs/reports/` - Diagnostic reports and system information
-- `notebooks/01-setup/` - Environment setup and diagnostics
+- `src/setup/` - Environment setup and diagnostics
 - `.backup/` - Archived content, restore as needed
 
 Happy learning!

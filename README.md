@@ -138,7 +138,7 @@ This project uses **uv** for fast Python package management.
 4. **Verify setup** (optional):
 
    ```powershell
-   cd notebooks/01-setup && uv run python run_diagnostics.py
+   cd src/setup && uv run python run_diagnostics.py
    ```
 
 5. **Run Jupyter** (optional):
@@ -293,7 +293,7 @@ setx OPENAI_API_KEY "sk-..."  # (bash/zsh: export OPENAI_API_KEY="sk-...")
 Verify your environment is properly configured by running the diagnostics script:
 
 ```powershell
-cd notebooks/01-setup && uv run python run_diagnostics.py
+cd src/setup && uv run python run_diagnostics.py
 ```
 
 This will check:
@@ -305,7 +305,7 @@ This will check:
 - Required package installations
 - Network connectivity
 
-A `report.txt` file will be generated in `notebooks/01-setup/` with detailed diagnostics.
+A `report.txt` file will be generated in `src/setup/` with detailed diagnostics.
 
 ### (Optional) Jupyter Smoke Test
 
@@ -313,7 +313,7 @@ A `report.txt` file will be generated in `notebooks/01-setup/` with detailed dia
 uv run jupyter lab
 ```
 
-Close it after confirming it opens. See `notebooks/01-setup/` for setup diagnostics and troubleshooting notebooks.
+Close it after confirming it opens. See `src/setup/` for setup diagnostics and troubleshooting notebooks.
 
 ### Updating Dependencies
 
