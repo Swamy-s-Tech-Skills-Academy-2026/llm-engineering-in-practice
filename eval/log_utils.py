@@ -2,12 +2,13 @@
 
 Appends dict records to a CSV (creating header if missing) with stable column ordering.
 """
+
 from __future__ import annotations
 import csv
 import os
 import time
 from datetime import datetime, timezone
-from typing import Dict, Iterable, List, Sequence
+from typing import Dict, List
 
 # Canonical ordered field names (extend cautiously to preserve downstream parsers)
 FIELD_ORDER: List[str] = [
@@ -27,8 +28,7 @@ FIELD_ORDER: List[str] = [
     "error_message",
 ]
 
-DEFAULT_LOG_PATH = os.path.join(
-    os.path.dirname(__file__), "experiment_log.csv")
+DEFAULT_LOG_PATH = os.path.join(os.path.dirname(__file__), "experiment_log.csv")
 
 
 def _normalize_row(row: Dict) -> Dict:
@@ -69,16 +69,18 @@ def log_run(row: Dict, path: str = DEFAULT_LOG_PATH, auto_id: bool = True) -> st
 
 
 if __name__ == "__main__":  # Simple smoke test
-    rid = log_run({
-        "task": "smoke_test",
-        "model": "openai:gpt-4o-mini",
-        "prompt_hash": "demo123",
-        "temperature": 0.0,
-        "input_tokens": 42,
-        "output_tokens": 17,
-        "latency_ms": 123.4,
-        "score_relevance": 1.0,
-        "score_factuality": 1.0,
-        "notes": "initial sanity"
-    })
+    rid = log_run(
+        {
+            "task": "smoke_test",
+            "model": "openai:gpt-4o-mini",
+            "prompt_hash": "demo123",
+            "temperature": 0.0,
+            "input_tokens": 42,
+            "output_tokens": 17,
+            "latency_ms": 123.4,
+            "score_relevance": 1.0,
+            "score_factuality": 1.0,
+            "notes": "initial sanity",
+        }
+    )
     print(f"Logged run {rid} -> {DEFAULT_LOG_PATH}")

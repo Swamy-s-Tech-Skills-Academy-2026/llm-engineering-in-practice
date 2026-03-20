@@ -3,9 +3,9 @@
 Implementations are intentionally simple; replace with advanced models or
 embedding-based similarity as the project matures.
 """
+
 from __future__ import annotations
 from typing import Sequence
-import math
 
 
 def relevance_score(reference_terms: Sequence[str], answer: str) -> float:
@@ -43,8 +43,6 @@ def factuality_placeholder(context: str, answer: str) -> float:
 
 
 if __name__ == "__main__":  # Basic smoke tests
-    rel = relevance_score(["python", "embedding"],
-                          "This covers Python embedding tricks")
-    fact = factuality_placeholder(
-        "python embedding retrieval", "Python embedding tricks retrieval")
+    rel = relevance_score(["python", "embedding"], "This covers Python embedding tricks")
+    fact = factuality_placeholder("python embedding retrieval", "Python embedding tricks retrieval")
     print({"relevance": rel, "factuality": fact})

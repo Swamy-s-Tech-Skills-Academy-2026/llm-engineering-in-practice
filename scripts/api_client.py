@@ -3,6 +3,7 @@
 Loads credentials from .env and exposes get_openai_client(), get_azure_openai_client(),
 and test_api_connection() for use in notebooks and scripts.
 """
+
 from __future__ import annotations
 
 import os
@@ -21,6 +22,7 @@ def get_openai_client():
     if not api_key:
         raise ValueError("OPENAI_API_KEY not found in .env file")
     from openai import OpenAI
+
     return OpenAI(api_key=api_key)
 
 
@@ -32,6 +34,7 @@ def get_azure_openai_client():
     if not endpoint or not api_key:
         raise ValueError("Azure OpenAI credentials not found in .env file")
     from openai import AzureOpenAI
+
     return AzureOpenAI(
         api_key=api_key,
         azure_endpoint=endpoint,

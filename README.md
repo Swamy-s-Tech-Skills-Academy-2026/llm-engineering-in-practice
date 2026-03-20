@@ -1,6 +1,6 @@
 # LLM Engineering Mastery Journey
 
-**Complete 25-week structured learning path for mastering LLM Engineering from basics to multi-platform mastery**
+Complete 25-week structured learning path for mastering LLM Engineering from basics to multi-platform mastery.
 
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen)
 ![Python](https://img.shields.io/badge/Python-3.11%2B-blue)
@@ -16,10 +16,10 @@ This repository is a comprehensive, hands-on exploration of modern Large Languag
 
 This repository is a **personal learning workspace** maintained by **Viswanatha Swamy (Swamy PKV)** as part of his learning journey in LLM Engineering.
 
-* This is **not an official course repository**
-* It does **not represent institutional teaching material**
-* It is **not endorsed, published, or maintained** by any educational institution
-* The contents are intended **solely for academic learning and self-practice**
+- This is **not an official course repository**
+- It does **not represent institutional teaching material**
+- It is **not endorsed, published, or maintained** by any educational institution
+- The contents are intended **solely for academic learning and self-practice**
 
 ---
 
@@ -44,18 +44,19 @@ This repository is a **personal learning workspace** maintained by **Viswanatha 
 
 ## 🎯 Objectives
 
-* Master LLM engineering from foundations to advanced multi-platform applications
-* Build practical skills with **OpenAI** and **Azure OpenAI** (dual provider support from Week 1)
-* Implement LLM applications across **multiple languages**: Python, Go, Node.js, Angular, React, Next.js, .NET
-* Master advanced patterns: Chain-of-Thought (CoT), ReAct, Reasoning Patterns, RAG, Agents
-* Practice retrieval, fine-tuning, function calling, and agent patterns
-* Compare frameworks (LangChain, LangGraph, OpenAI Agent SDK, Azure Agent SDK) pragmatically
-* Establish reproducible, evaluable experiment workflows
-* Develop production-ready, full-stack LLM applications
+- Master LLM engineering from foundations to advanced multi-platform applications
+- Build practical skills with **OpenAI** and **Azure OpenAI** (dual provider support from Week 1)
+- Implement LLM applications across **multiple languages**: Python, Go, Node.js, Angular, React, Next.js, .NET
+- Master advanced patterns: Chain-of-Thought (CoT), ReAct, Reasoning Patterns, RAG, Agents
+- Practice retrieval, fine-tuning, function calling, and agent patterns
+- Compare frameworks (LangChain, LangGraph, OpenAI Agent SDK, Azure Agent SDK) pragmatically
+- Establish reproducible, evaluable experiment workflows
+- Develop production-ready, full-stack LLM applications
 
 ## 📦 Learning Path Overview
 
 **25-Week Structured Journey:**
+
 - **Weeks 1-5**: Foundations (Python, OpenAI + Azure OpenAI)
 - **Weeks 6-10**: Intermediate (Add Go, Node.js)
 - **Weeks 11-15**: Advanced (Add React, Angular, Next.js)
@@ -63,6 +64,7 @@ This repository is a **personal learning workspace** maintained by **Viswanatha 
 - **Weeks 21-25**: Mastery (All platforms + frameworks)
 
 **Key Deep Dives:**
+
 - **Week 3**: Chain-of-Thought (CoT) - Complete patterns and best practices
 - **Week 5**: ReAct (Reasoning + Acting) - Full implementation guide
 - **Week 14**: Reasoning Patterns - All patterns (CoT, ReAct, ToT, PoT, etc.)
@@ -73,6 +75,7 @@ This repository is a **personal learning workspace** maintained by **Viswanatha 
 - **Week 25**: Agentic Frameworks - LangChain, LangGraph, SDKs
 
 **Multi-Platform Support:**
+
 - **Providers**: OpenAI + Azure OpenAI (dual support from Week 1)
 - **Languages**: Python, Go, Node.js, Angular, React, Next.js, .NET Aspire, .NET Web API, .NET Blazor
 - **Frameworks**: LangChain, LangGraph, OpenAI Agent SDK, Azure Agent SDK
@@ -156,6 +159,7 @@ Supplemented with official docs, open papers, and community benchmarks.
 ## 🗺 25-Week Learning Roadmap
 
 ### Foundation Phase (Weeks 1-5)
+
 1. **Week 1**: Environment setup, API keys, dual provider (OpenAI + Azure OpenAI)
 2. **Week 2**: Python & data handling, text chunking
 3. **Week 3**: Prompt engineering + **Chain-of-Thought (CoT) Deep Dive**
@@ -163,6 +167,7 @@ Supplemented with official docs, open papers, and community benchmarks.
 5. **Week 5**: Multi-agent intro + **ReAct (Reasoning + Acting) Deep Dive**
 
 ### Intermediate Phase (Weeks 6-10)
+
 6. **Week 6**: Structured outputs, function calling + **Go intro**
 7. **Week 7**: Optimization & performance + **Node.js intro**
 8. **Week 8**: Applied mini projects (multi-language)
@@ -170,6 +175,7 @@ Supplemented with official docs, open papers, and community benchmarks.
 10. **Week 10**: Deployment & scaling
 
 ### Advanced Phase (Weeks 11-15)
+
 11. **Week 11**: Capstone build + **React intro**
 12. **Week 12**: Review & deep dives
 13. **Week 13**: Advanced RAG techniques + **Angular intro**
@@ -177,6 +183,7 @@ Supplemented with official docs, open papers, and community benchmarks.
 15. **Week 15**: Multi-agent systems + **Next.js intro**
 
 ### Production Phase (Weeks 16-20)
+
 16. **Week 16**: Production optimization + **.NET Web API intro**
 17. **Week 17**: Advanced evaluation
 18. **Week 18**: Specialized applications + **Blazor intro**
@@ -184,6 +191,7 @@ Supplemented with official docs, open papers, and community benchmarks.
 20. **Week 20**: Mastery & beyond (all platforms)
 
 ### Mastery Phase (Weeks 21-25)
+
 21. **Week 21**: **Azure OpenAI Deep Dive** + multi-provider patterns
 22. **Week 22**: **Multi-Language Mastery** (Python, Go, Node.js)
 23. **Week 23**: **Frontend Mastery** (React, Angular, Next.js)
@@ -243,16 +251,19 @@ This project uses [`uv`](https://github.com/astral-sh/uv) for fast dependency ma
 ### Installing uv
 
 **PowerShell (Windows):**
+
 ```powershell
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
 **macOS/Linux:**
+
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
 **Alternative (via pip):**
+
 ```powershell
 pip install uv
 ```
@@ -286,6 +297,7 @@ cd notebooks/01-setup && uv run python run_diagnostics.py
 ```
 
 This will check:
+
 - System information (OS, RAM, disk space)
 - Git repository configuration
 - Environment file (.env) and API keys
@@ -316,13 +328,12 @@ uv add package-name
 uv remove package-name
 ```
 
-
 ## 🔍 Evaluation Philosophy
 
-* Prefer small, fast feedback loops
-* Track: latency, token usage, factuality, relevance, refusal rate
-* Store experiment metadata (prompt hash, model, temperature, dataset slice)
-* Re-run baselines after significant changes
+- Prefer small, fast feedback loops
+- Track: latency, token usage, factuality, relevance, refusal rate
+- Store experiment metadata (prompt hash, model, temperature, dataset slice)
+- Re-run baselines after significant changes
 
 ## ✅ Progress Log
 
@@ -334,10 +345,10 @@ uv remove package-name
 
 ## 📘 Key Resources (Growing List)
 
-* OpenAI & Anthropic model docs
-* LlamaIndex, LangChain, Semantic Kernel docs
-* Papers: RAG triad (retrieval quality, generation control, evaluation), Toolformer, Self-Ask
-* Evaluation frameworks: RAGAS, TruLens, LM Evaluation Harness
+- OpenAI & Anthropic model docs
+- LlamaIndex, LangChain, Semantic Kernel docs
+- Papers: RAG triad (retrieval quality, generation control, evaluation), Toolformer, Self-Ask
+- Evaluation frameworks: RAGAS, TruLens, LM Evaluation Harness
 
 ## 📚 Comprehensive Learning Plan
 
@@ -347,6 +358,7 @@ For the complete **25-week structured learning path**, daily workflow patterns, 
 - **[`docs/weeks/Week1.md`](docs/weeks/Week1.md) through [`docs/weeks/Week25.md`](docs/weeks/Week25.md)** - Detailed day-by-day guides for each week
 
 **Each week includes:**
+
 - Learning objectives
 - 5 days × 30 minutes breakdown (2.5 hours/week)
 - Practical exercises with success criteria
@@ -356,9 +368,9 @@ For the complete **25-week structured learning path**, daily workflow patterns, 
 
 ## 🔐 Ethics & Safety Notes (Intent)
 
-* Avoid storing or committing sensitive data
-* Log only minimal necessary interaction metadata
-* Track model + prompt versions for reproducibility
+- Avoid storing or committing sensitive data
+- Log only minimal necessary interaction metadata
+- Track model + prompt versions for reproducibility
 
 ## 👤 Author
 
@@ -428,8 +440,8 @@ docker run --rm -w /input -v "${PWD}:/input" lycheeverse/lychee:latest --config 
 
 If you add markdown elsewhere (e.g. prompt notes), update both:
 
-* `.github/workflows/docs-quality.yml` (lychee args)
-* `lychee.toml` (optional path excludes)
+- `.github/workflows/docs-quality.yml` (lychee args)
+- `lychee.toml` (optional path excludes)
 
 #### Excluded links
 
