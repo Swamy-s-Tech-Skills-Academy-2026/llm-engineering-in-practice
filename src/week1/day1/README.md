@@ -299,9 +299,9 @@ By the end of this week, you will:
 - Max tokens: Limits response length
 - Token usage: Track your API costs
 
-**Optional — First LLM lab:** Try the [Week 1 First LLM Lab](../../notebooks/week1-first-llm-lab.ipynb) notebook: it fetches a web page (using the shared scraper in `src/week1/`), uses the [web-summarize](../../prompts/web-summarize.prompt.txt) prompt template, and calls the API to produce a short summary.
+**Optional — First LLM lab:** Try the `notebooks/week1-first-llm-lab.ipynb` notebook (archived in `.backup/notebooks/`): it fetches a web page (using the shared scraper in `src/week1/day1/`), uses the `web-summarize.prompt.txt` template, and calls the API to produce a short summary.
 
-**Optional — Video/transcript lab:** Try the [Week 1 Video Transcript Lab](../../notebooks/week1-video-transcript-lab.ipynb) for **video-to-text** then summarization: it uses a YouTube transcript (or a sample) and the [video-transcript-summarize](../../prompts/video-transcript-summarize.prompt.txt) prompt to get a short summary of spoken content.
+**Optional — Video/transcript lab:** Try the `notebooks/week1-video-transcript-lab.ipynb` notebook (archived in `.backup/notebooks/`) for **video-to-text** then summarization: it uses a YouTube transcript (or a sample) and the `video-transcript-summarize.prompt.txt` prompt to get a short summary of spoken content.
 
 **Resources:**
 
@@ -470,10 +470,10 @@ By the end of this week, you will:
 
 - [ ] Virtual environment created via `uv sync` (no manual activation needed)
 - [ ] `.env` file with API keys (not committed)
-- [ ] `scripts/api_client.py` working (run from repo root: `uv run python scripts/api_client.py`)
+- [ ] API connection verified (`src/setup/run_diagnostics.py` or `02_diagnostics.ipynb`)
 - [ ] Diagnostics passing (`src/setup/run_diagnostics.py` or `02_diagnostics.ipynb`)
-- [ ] First LLM lab done: [notebooks/week1-first-llm-lab.ipynb](../../notebooks/week1-first-llm-lab.ipynb) (web summarizer using `prompts/web-summarize.prompt.txt`)
-- [ ] (Optional) Video/transcript lab: [notebooks/week1-video-transcript-lab.ipynb](../../notebooks/week1-video-transcript-lab.ipynb) (video-to-text + summarization using `prompts/video-transcript-summarize.prompt.txt`)
+- [ ] First LLM lab done: `notebooks/week1-first-llm-lab.ipynb` (archived in `.backup/notebooks/` — web summarizer)
+- [ ] (Optional) Video/transcript lab: `notebooks/week1-video-transcript-lab.ipynb` (archived in `.backup/notebooks/`)
 - [ ] `pyproject.toml` and `uv.lock` in place (managed by `uv sync`)
 - [ ] `.gitignore` configured
 - [ ] Week 1 reflection completed
