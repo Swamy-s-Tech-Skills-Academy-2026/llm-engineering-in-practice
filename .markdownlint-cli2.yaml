@@ -11,6 +11,7 @@ ignores:
   - "**/.cursor/**"
   - "**/.github/**"
   - "source-material/**"
+  - ".backup/**"
   - "docs/reports/**"
   - "docs/retros/**"
   - ".git/**"

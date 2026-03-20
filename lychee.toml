@@ -36,6 +36,7 @@ exclude = [
 # Skip link checking inside these filesystem paths (globs)
 exclude_path = [
   "source-material/**",  # Staging area for raw content (read-only)
+  ".backup/**",          # Backup folder (restore-ready, not actively maintained)
   "data/**",             # raw/processed data may contain transient links
   "docs/reports/**",      # Generated reports (may contain transient links)
   "docs/retros/**",      # Retrospective notes (low value link checking)
